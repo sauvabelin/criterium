@@ -29,6 +29,7 @@ define("LOVEGNO",			9);
 define("SOLALEX",			10);
 define("GRAMMONT",		11);
 define("ARMINA",			12);
+define("SANTIS",			13);
 
 define("ROVEREAZ",		3);
 define("ORZIVAL",			4);

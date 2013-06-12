@@ -47,13 +47,13 @@ if(!mysql_query('insert into t_troop values ("'.LOVEGNO.'", 		"Lovegno",    "'.E
 if(!mysql_query('insert into t_troop values ("'.SOLALEX.'", "Solalex",   "'.ECLAIREUSE.'")')){exit("la création d'une troop a échoué");}
 if(!mysql_query('insert into t_troop values ("'.GRAMMONT.'", "Grammont",  "'.ECLAIREUSE.'")')){exit("la création d'une troop a échoué");}
 if(!mysql_query('insert into t_troop values ("'.ARMINA.'", "Armina",    "'.ECLAIREUSE.'")')){exit("la création d'une troop a échoué");}
+if(!mysql_query('insert into t_troop values ("'.SANTIS.'", "Santis",    "'.ECLAIREUSE.'")')){exit("la création d'une troop a échoué");}
 //troops rouges garçons:
 if(!mysql_query('insert into t_troop values ("'.ROVEREAZ.'", "Rovereaz",    "'.ROUGE_G.'")')){exit("la création d'une troop a échoué");}
 if(!mysql_query('insert into t_troop values ("'.ORZIVAL.'", "Orzival",    "'.ROUGE_G.'")')){exit("la création d'une troop a échoué");}
 if(!mysql_query('insert into t_troop values ("'.TSALION.'", "Tsalion",    "'.ROUGE_G.'")')){exit("la création d'une troop a échoué");}
 //troops rouges filles:
 if(!mysql_query('insert into t_troop values ("'.SESAL.'", "Sesal",    "'.ROUGE_F.'")')){exit("la création d'une troop a échoué");}
-if(!mysql_query('insert into t_troop values ("'.TAMARO.'", "Tamaro",    "'.ROUGE_F.'")')){exit("la création d'une troop a échoué");}
 //le clan
 if(!mysql_query('insert into t_troop values ("'.CLAN.'", "Le Clan",    "'.CLANS.'")')){exit("la création d'une troop a échoué");}
 //patrol gars:
@@ -102,13 +102,15 @@ if(!mysql_query('insert into t_patrol values ("NULL", "Impalas",				"'.ARMINA.'"
 if(!mysql_query('insert into t_patrol values ("NULL", "Mangoustes",		"'.ARMINA.'")')){exit("la création d'une patrol a échoué");}
 if(!mysql_query('insert into t_patrol values ("NULL", "Coyotes",				"'.ARMINA.'")')){exit("la création d'une patrol a échoué");}
 if(!mysql_query('insert into t_patrol values ("NULL", "Cameleons",				"'.ARMINA.'")')){exit("la création d'une patrol a échoué");}
+if(!mysql_query('insert into t_patrol values ("NULL", "Oryx",				"'.SANTIS.'")')){exit("la création d'une patrol a échoué");}
+if(!mysql_query('insert into t_patrol values ("NULL", "Irbis",				"'.SANTIS.'")')){exit("la création d'une patrol a échoué");}
+if(!mysql_query('insert into t_patrol values ("NULL", "Condors",				"'.SANTIS.'")')){exit("la création d'une patrol a échoué");}
 
 //dummy patrols for Rouges:
 if(!mysql_query('insert into t_patrol values ("NULL", "tout Rovereaz",				"'.ROVEREAZ.'")')){exit("la création d'une patrol a échoué");}
 if(!mysql_query('insert into t_patrol values ("NULL", "tout Orzival",				"'.ORZIVAL.'")')){exit("la création d'une patrol a échoué");}
 if(!mysql_query('insert into t_patrol values ("NULL", "tout Tsalion",				"'.TSALION.'")')){exit("la création d'une patrol a échoué");}
 if(!mysql_query('insert into t_patrol values ("NULL", "tout Sesal",				"'.SESAL	.'")')){exit("la création d'une patrol a échoué");}
-if(!mysql_query('insert into t_patrol values ("NULL", "tout Tamaro",				"'.TAMARO	.'")')){exit("la création d'une patrol a échoué");}
 if(!mysql_query('insert into t_patrol values ("NULL", "tout le Clan",				"'.CLAN	.'")')){exit("la création d'une patrol a échoué");}
 
 // minimum year:
