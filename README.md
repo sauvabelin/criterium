@@ -1,4 +1,3 @@
-criterium
+Criterium
 =========
-
-Programme de chronométrage pour un citérieum
+Programme de chronométrage pour un critérium
