@@ -1,23 +1,23 @@
 <?php
 	/*
 		file: 	editTimes.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		On demande à l'utilisateur de modifier les temps de départ et d'arrivée d'un Biker.
+		On demande Ã  l'utilisateur de modifier les temps de dÃ©part et d'arrivÃ©e d'un Biker.
 	*/
 
 include_once("globals.php");
 include_once("sql.php");      
 
 
-// on récupère l'id de ce Biker (passé en paramètre GET)
+// on rÃ©cupÃ¨re l'id de ce Biker (passÃ© en paramÃ¨tre GET)
 $bikerId = getParameterGET("biker_id");
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-// on récupère les données de ce biker:
+// on rÃ©cupÃ¨re les donnÃ©es de ce biker:
 $query = 'select * from t_biker where id="'.$bikerId.'"';
 $res = mysql_query($query);
 $row = mysql_fetch_assoc($res);
@@ -52,15 +52,15 @@ $endTime2 = $row["endTime2"];
 		echo 'modifier les temps pour:';
 		echo '<h3> ['.$dossard.'] '.$firstName.' '.$lastName.'</h3>';
 		
-		// avertir l'utilisateur que ce n'est pas la méthode "normale" de modifier les temps ici
+		// avertir l'utilisateur que ce n'est pas la mÃ©thode "normale" de modifier les temps ici
 		echo '<span class="alert">Attention: </span>';
-		echo 'Cette page n\'est pas supposé être utilisée, sauf pour corriger une erreur. Normalement:<br>';
-		echo ' les temps de départs sont fixé lors des départs de la patrouille (lien "départ d\'une patrouille..." en page d\'accueil)<br>';
-		echo ' les temps d\'arrivées sont fixé lors de l\'arrivé d\'un participant (lien "Etape de..." en page d\'accueil)<br>';
+		echo 'Cette page n\'est pas supposÃ© Ãªtre utilisÃ©e, sauf pour corriger une erreur. Normalement:<br>';
+		echo ' les temps de dÃ©parts sont fixÃ© lors des dÃ©parts de la patrouille (lien "dÃ©part d\'une patrouille..." en page d\'accueil)<br>';
+		echo ' les temps d\'arrivÃ©es sont fixÃ© lors de l\'arrivÃ© d\'un participant (lien "Etape de..." en page d\'accueil)<br>';
 		echo '<br><br>';
 		
-		// on met dans des variables séparées les heures, minues, secondes pour chacun des temps:
-		// pour faire ça, on commence a tout mettre à "??". Ensuite on cherche les vrais valeurs dans la base de donnée,
+		// on met dans des variables sÃ©parÃ©es les heures, minues, secondes pour chacun des temps:
+		// pour faire Ã§a, on commence a tout mettre Ã  "??". Ensuite on cherche les vrais valeurs dans la base de donnÃ©e,
 		// SI la vraie valeur n'est pas "UNKNOWN".
 		
 		$start1HH = "??";		$start1MM = "??";		$start1SS = "??";
@@ -115,14 +115,14 @@ $endTime2 = $row["endTime2"];
 		echo '<input type="hidden" name="patrol_id" value="'.$patrolId.'">';
 		if(isset($_GET["src"]))
 		{
-			// il se peut qu'un paramètre de plus, src, soit présent.
+			// il se peut qu'un paramÃ¨tre de plus, src, soit prÃ©sent.
 			// c'est si on arrive ici en ayant fait admin->tests plutot que admin->edit troupe->edite patrouille->edit biker.
 			// dans ce cas, on le passe pour que la redirection automatique se fasse au bon endroit:
 			$src = $_GET["src"];
 			echo '<input type="hidden" name="src" value="'.$src.'">';
 			
 		}
-		echo 'Heure de départ Matin: ';
+		echo 'Heure de dÃ©part Matin: ';
 		echo '<input type="text" name="start1HH" value="'.$start1HH.'" size="2">';
 		echo 'h ';
 		echo '<input type="text" name="start1MM" value="'.$start1MM.'" size="2">';
@@ -130,7 +130,7 @@ $endTime2 = $row["endTime2"];
 		echo '<input type="text" name="start1SS" value="'.$start1SS.'" size="2">';
 		echo 's ';
 		echo '<br>';
-		echo 'Heure d\'arrivée Matin: ';
+		echo 'Heure d\'arrivÃ©e Matin: ';
 		echo '<input type="text" name="end1HH" value="'.$end1HH.'" size="2">';
 		echo 'h ';
 		echo '<input type="text" name="end1MM" value="'.$end1MM.'" size="2">';
@@ -138,7 +138,7 @@ $endTime2 = $row["endTime2"];
 		echo '<input type="text" name="end1SS" value="'.$end1SS.'" size="2">';
 		echo 's ';
 		echo '<br><br>';
-		echo 'Heure de départ contre la monte: ';
+		echo 'Heure de dÃ©part contre la monte: ';
 		echo '<input type="text" name="startAHH" value="'.$startAHH.'" size="2">';
 		echo 'h ';
 		echo '<input type="text" name="startAMM" value="'.$startAMM.'" size="2">';
@@ -146,7 +146,7 @@ $endTime2 = $row["endTime2"];
 		echo '<input type="text" name="startASS" value="'.$startASS.'" size="2">';
 		echo 's ';
 		echo '<br>';
-		echo 'Heure d\'arrivée contre la montre: ';
+		echo 'Heure d\'arrivÃ©e contre la montre: ';
 		echo '<input type="text" name="endAHH" value="'.$endAHH.'" size="2">';
 		echo 'h ';
 		echo '<input type="text" name="endAMM" value="'.$endAMM.'" size="2">';
@@ -154,7 +154,7 @@ $endTime2 = $row["endTime2"];
 		echo '<input type="text" name="endASS" value="'.$endASS.'" size="2">';
 		echo 's ';
 		echo '<br><br>';
-		echo 'Heure de départ Apres-midi: ';
+		echo 'Heure de dÃ©part Apres-midi: ';
 		echo '<input type="text" name="start2HH" value="'.$start2HH.'" size="2">';
 		echo 'h ';
 		echo '<input type="text" name="start2MM" value="'.$start2MM.'" size="2">';
@@ -162,7 +162,7 @@ $endTime2 = $row["endTime2"];
 		echo '<input type="text" name="start2SS" value="'.$start2SS.'" size="2">';
 		echo 's ';
 		echo '<br>';
-		echo 'Heure d\'arrivée Apres-midi: ';
+		echo 'Heure d\'arrivÃ©e Apres-midi: ';
 		echo '<input type="text" name="end2HH" value="'.$end2HH.'" size="2">';
 		echo 'h ';
 		echo '<input type="text" name="end2MM" value="'.$end2MM.'" size="2">';

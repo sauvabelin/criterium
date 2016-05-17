@@ -1,30 +1,30 @@
 <?php
 	/*
 		file: 	deleteTroop.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		Si on arrive à ce fichier, ça veut dire que l'utilisateur a cliqué sur le lien "supprimer" à coté d'une troupe
+		Si on arrive Ã  ce fichier, Ã§a veut dire que l'utilisateur a cliquÃ© sur le lien "supprimer" Ã  cotÃ© d'une troupe
 		dans la page d'admin.
 		
-		On prend dans la DB le nom de la troupe, et on demande confirmation à l'utilisateur de la supprimer
+		On prend dans la DB le nom de la troupe, et on demande confirmation Ã  l'utilisateur de la supprimer
 	*/
 include_once("globals.php");
 include_once("sql.php");
 
-// on récupère les variables GET dans des variables locales pour ce script
+// on rÃ©cupÃ¨re les variables GET dans des variables locales pour ce script
 $bsNum = getParameterGET("bsNum");
 
-// connection à la base de données:
+// connection Ã  la base de donnÃ©es:
 connect();
 
-// On récupère le nom de la patrouille qu'on veut afficher pour l'utilisateur:
+// On rÃ©cupÃ¨re le nom de la patrouille qu'on veut afficher pour l'utilisateur:
 $query = 'select name from t_troop where bsNum="'.$bsNum.'"';
 $res = mysql_query($query);
 // on regarde si on a bien 1 et 1 seul patrouille avec cet id:
 $number_of_troop = mysql_num_rows($res);
 if($number_of_troop!=1)
 {
-	exit('error: Il y a '.$number_of_patrol.' patrouille avec id="'.$id.'" dans la base de donnée (alors qu\'il devrait y en avoir 1)');
+	exit('error: Il y a '.$number_of_patrol.' patrouille avec id="'.$id.'" dans la base de donnÃ©e (alors qu\'il devrait y en avoir 1)');
 }
 $row = mysql_fetch_assoc($res);
 $name = $row["name"];
@@ -39,7 +39,7 @@ $name = $row["name"];
 	
 	<body>
 	<?php
-		// on affiche une demande de confirmation de la suppression à l'utilisateur:
+		// on affiche une demande de confirmation de la suppression Ã  l'utilisateur:
 		echo '<h2>Etes-vous sur de vouloir supprimer la troupe '.$name.'?</h2>';
 		echo '<br><br>';
 		echo '<a href="deleteTroopConfirmed.php?bsNum='.$bsNum.'">OUI, SUPPRIMER</a>';

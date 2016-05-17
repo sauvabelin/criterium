@@ -1,14 +1,14 @@
 <?php
 	/*
 		file: 	INFO_displayTables.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
 		On affiche les tables et leur contenu
 	*/
 include_once("sql.php");
 include_once("globals.php");
 
-// connection à la DB:
+// connection Ã  la DB:
 connect();
 
 

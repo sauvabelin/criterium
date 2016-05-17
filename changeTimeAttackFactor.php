@@ -8,11 +8,11 @@ include_once("globals.php");
 include_once("sql.php");      
 
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-// on récupère le facteur:
+// on rÃ©cupÃ¨re le facteur:
 $timeAttackFactor 	= getTimeAttackFactor();
 
 ?>
@@ -27,12 +27,12 @@ $timeAttackFactor 	= getTimeAttackFactor();
 		
 		<?php
 		
-		// on affiche un formulaire avec les champs déja remplis avec les champs actuels		
+		// on affiche un formulaire avec les champs dÃ©ja remplis avec les champs actuels		
 		echo '<form action="changeTimeAttackFactorDone.php" method="post">';
 		
-		echo 'Les temps du contre la montre seront multipliés par  ';
+		echo 'Les temps du contre la montre seront multipliÃ©s par  ';
 		echo '<input type="text" name="timeAttackFactor" id="timeAttackFactorId" value="'.$timeAttackFactor.'" size="2">';
-		echo ' dans le calcul des résultats<br>';
+		echo ' dans le calcul des rÃ©sultats<br>';
 		
 		echo '<input type="Submit" value="MODIFIER">';
 		echo '</form>';

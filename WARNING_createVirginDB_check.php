@@ -15,10 +15,10 @@
 		
 		echo '<span class="alert">';
 		echo 'ATTENTION:<br>';
-		echo 'Ceci aura pour effet de remettre à zéro la base de donnée,<br>';
-		echo 'De créer les troupes et les patrouilles selon le modèle<br>';
+		echo 'Ceci aura pour effet de remettre Ã  zÃ©ro la base de donnÃ©e,<br>';
+		echo 'De crÃ©er les troupes et les patrouilles selon le modÃ¨le<br>';
 		echo 'Et d\'effacer tous les gars/filles<br>';
-		echo '<br>Etes-vous sûr??<br>';
+		echo '<br>Etes-vous sÃ»r??<br>';
 		echo '</span>';
 		
 		echo '<a href="WARNING_createVirginDB.php">OUI</a><br><br>';

@@ -1,17 +1,17 @@
 <?php
 /*
 	file: 	stopBiker.php
-	author: Benoît Uffer
+	author: BenoÃ®t Uffer
 	
-	Ce fichier permet à l'utilisateur d'entrer l'heure d'arrivée d'un dossard à une étape.
-	Pour arriver à ce fichier une première fois, l'utilisateur à cliqué sur un lien qui est différent pour l'étape du matin
-	ou de l'apres midi. L'étape est ainsi déja connue par la méthode GET quand ce script est executé.
-	Le numéro de dossard et l'heure d'arrivée vont étre choisie par l'utilisateur sur cette page.
+	Ce fichier permet Ã  l'utilisateur d'entrer l'heure d'arrivÃ©e d'un dossard Ã  une Ã©tape.
+	Pour arriver Ã  ce fichier une premiÃ¨re fois, l'utilisateur Ã  cliquÃ© sur un lien qui est diffÃ©rent pour l'Ã©tape du matin
+	ou de l'apres midi. L'Ã©tape est ainsi dÃ©ja connue par la mÃ©thode GET quand ce script est executÃ©.
+	Le numÃ©ro de dossard et l'heure d'arrivÃ©e vont Ã©tre choisie par l'utilisateur sur cette page.
 */
 
 include_once("globals.php");
 
-// on récupère le timefield (sivant à quelle etape on arrive, on change pas le meme champs dans la base de donnée)
+// on rÃ©cupÃ¨re le timefield (sivant Ã  quelle etape on arrive, on change pas le meme champs dans la base de donnÃ©e)
 $timeField = getParameterGET("timeField");	
 
 ?>
@@ -32,7 +32,7 @@ $timeField = getParameterGET("timeField");
 	
 	
 	<?php
-		// on affiche un titre différent suivant la "phase"
+		// on affiche un titre diffÃ©rent suivant la "phase"
 		if($timeField=="endTime1")
 		{
 			echo '<h3>Etape du matin</h3>';
@@ -48,7 +48,7 @@ $timeField = getParameterGET("timeField");
 	
 	
 	/*
-	Voici le formulaire qui permet d'entrer le numéro du dossard, et le temps d'arrivée:
+	Voici le formulaire qui permet d'entrer le numÃ©ro du dossard, et le temps d'arrivÃ©e:
 	a choix: en utilisant le temps de l'ordinateur, ou en entrant une heure manuellement.
 	on passe le timefield en GET
 	*/
@@ -57,7 +57,7 @@ echo '		<h3>1) Numero du dossard:</h3>                ';
 echo '		<label for="pmId">Numero du dossard:</label>';
 echo '		<input type="text" name="dossard" id="dossardId" size="3">';
 echo '		<br>';
-echo '		<h3>2) Choisissez la méthode:</h3>';
+echo '		<h3>2) Choisissez la mÃ©thode:</h3>';
 echo '		<input type="radio" name="method" value="system" id="systemId" checked>';
 echo '		<label for="systemId">Utiliser le temps de l\'ordinateur</label>';
 echo '		<br>';

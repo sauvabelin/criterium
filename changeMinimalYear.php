@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	changeMinimalYear.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
 	*/
 
@@ -9,11 +9,11 @@ include_once("globals.php");
 include_once("sql.php");      
 
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-// on récupère l'année minimale actuelle:
+// on rÃ©cupÃ¨re l'annÃ©e minimale actuelle:
 $minYear = getMinimalYear();
 
 ?>
@@ -28,12 +28,12 @@ $minYear = getMinimalYear();
 		
 		<?php
 		
-		// on affiche un formulaire avec les champs déja remplis avec les champs actuels		
+		// on affiche un formulaire avec les champs dÃ©ja remplis avec les champs actuels		
 		echo '<form action="changeMinimalYearDone.php" method="post">';
-		echo 'les gars et fille nés AVANT ';
+		echo 'les gars et fille nÃ©s AVANT ';
 		echo '<input type="text" name="minYear" id="minYearId" value="'.$minYear.'" size="4">';
 		echo ' ne sont pas pris en compte pour les classement des patrouilles et des troupes<br>';
-		echo 'pour les classement par gars/filles, ils sont considérés comme des rouges<br>';
+		echo 'pour les classement par gars/filles, ils sont considÃ©rÃ©s comme des rouges<br>';
 		echo '<br>';
 		echo '<input type="Submit" value="MODIFIER">';
 		echo '</form>';

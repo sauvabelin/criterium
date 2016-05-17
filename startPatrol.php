@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	startPatrol.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("globals.php");
@@ -16,11 +16,11 @@ $patrolId = getParameterGET("id");
 connect();
 
 
-// récupérer le nom de la patrouille:
+// rÃ©cupÃ©rer le nom de la patrouille:
 $patrolName = getPatrolName($patrolId);
 
-// avant de donner le signal de départ, on verifie que tous les bikers de cette patrouille ont déja un dossard.
-// si ce n'est pas le cas, on affiche les prénoms et noms des gars qui n'en ont pas encore.
+// avant de donner le signal de dÃ©part, on verifie que tous les bikers de cette patrouille ont dÃ©ja un dossard.
+// si ce n'est pas le cas, on affiche les prÃ©noms et noms des gars qui n'en ont pas encore.
 $all_bikers_have_dossard = TRUE;
 $query = 'select firstName,lastName from t_biker where patrol_id="'.$patrolId.'" and dossard="'.UNKNOWN.'"';
 $res = mysql_query($query);
@@ -36,7 +36,7 @@ if($numer_of_unknown_dossard>0)
 	}	
 }
 
-// On vérifie aussi qu'il y a bien des participants dans cette patrouille. On les compte et on affiche la liste:
+// On vÃ©rifie aussi qu'il y a bien des participants dans cette patrouille. On les compte et on affiche la liste:
 $query = 'select firstName,lastName,dossard from t_biker where patrol_id="'.$patrolId.'"';
 $res = mysql_query($query);
 $num_of_bikers = mysql_num_rows($res);
@@ -75,11 +75,11 @@ for($i=0;$i<$num_of_bikers;$i++)
    }
 	else
 	{
-	// Si des bikers n'ont pas encore de numéro de dossard, avertir l'utilisateur:
+	// Si des bikers n'ont pas encore de numÃ©ro de dossard, avertir l'utilisateur:
 	if($all_bikers_have_dossard == FALSE)
 	{
 		echo '<div class="alert">ATTENTION:</div>';
-		echo 'cette patrouille comporte des bikers dont le numéro de dossard est inconnu dans la base de données<br>';
+		echo 'cette patrouille comporte des bikers dont le numÃ©ro de dossard est inconnu dans la base de donnÃ©es<br>';
 		echo '<UL>';
 		for($i=0;$i<$numer_of_unknown_dossard;$i++)
 		{
@@ -94,7 +94,7 @@ for($i=0;$i<$num_of_bikers;$i++)
 	
 
 	
-		echo '<h3>1) Choisissez l\'étape:</h3>';
+		echo '<h3>1) Choisissez l\'Ã©tape:</h3>';
 		echo '<input type="radio" name="timeField" value="startTime1" id="amId">';
 		echo '<label for="amId">Etape du matin</label>';
 		echo '<br>';
@@ -102,9 +102,9 @@ for($i=0;$i<$num_of_bikers;$i++)
 		echo '<label for="taId">Contre la montre</label>';
 		echo '<br>';
 		echo '<input type="radio" name="timeField" value="startTime2" id="pmId">';
-		echo '<label for="pmId">Etape de l\'après-midi</label>';
+		echo '<label for="pmId">Etape de l\'aprÃ¨s-midi</label>';
 		echo '<br>';
-		echo '<h3>2) Choisissez la méthode:</h3>';
+		echo '<h3>2) Choisissez la mÃ©thode:</h3>';
 		echo '<input type="radio" name="method" value="system" id="systemId" checked>';
 		echo '<label for="systemId">Utiliser le temps de l\'ordinateur</label>';
 		echo '<br>';

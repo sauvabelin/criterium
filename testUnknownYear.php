@@ -1,14 +1,14 @@
 <?php
 	/*
 		file: 	testUnknownYear.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("globals.php");
 include_once("sql.php");
 
 
-// connection à la base de données:
+// connection Ã  la base de donnÃ©es:
 connect();
 
 
@@ -41,17 +41,17 @@ for($i=0;$i<$number_of_bikers;$i++)
 	if($number_of_bikers == 0)
 	{
 		echo '<br><br>';
-		echo '<span class="prompt">C\'est bon! il n\'y a aucun gars/filles dans la base de donnée avec une année de naissance inconnue</span>';
+		echo '<span class="prompt">C\'est bon! il n\'y a aucun gars/filles dans la base de donnÃ©e avec une annÃ©e de naissance inconnue</span>';
 		echo '<br><br>';
 	}
 	else
 	{
 	
-		echo '<div class="alert">Liste des bikers dont l\'année de naissance est inconnue:</div>';
+		echo '<div class="alert">Liste des bikers dont l\'annÃ©e de naissance est inconnue:</div>';
 		br(2);
 		echo '<table border ="1">';
 		echo '<tr>';
-		echo '<td>Nom</td><td>Prénom</td><td>Troupe</td><td>Patrouille</td><td></td><td></td>';
+		echo '<td>Nom</td><td>PrÃ©nom</td><td>Troupe</td><td>Patrouille</td><td></td><td></td>';
 		echo '</tr>';
 		
 	
@@ -62,7 +62,7 @@ for($i=0;$i<$number_of_bikers;$i++)
 			echo '<td>'.$biker[$i]["firstName"].'</td>';
 			echo '<td>'.$biker[$i]["troopName"].'</td>';
 			echo '<td>'.$biker[$i]["patrolName"].'</td>';
-			// sur les liens, on ajoute un paramètre GET "src" pour qu'apres la modif (ou la suppression), on se redirige automatiquement à cette page
+			// sur les liens, on ajoute un paramÃ¨tre GET "src" pour qu'apres la modif (ou la suppression), on se redirige automatiquement Ã  cette page
 			echo '<td><a href="editBiker.php?id='.$biker[$i]["id"].'&src=testUnknownYear">Modifier infos</a></td>';
 			echo '<td><a href="deleteBiker.php?id='.$biker[$i]["id"].'&src=testUnknownYear">Supprimer</a></td>';
 			echo '</tr>';

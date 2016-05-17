@@ -1,16 +1,16 @@
 <?php
 	/*
 		file: 	editTimesDone.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		On arrive à ce script si on veut modifier des temps d'un biker. (temps de départ ou d'arrivée)
+		On arrive Ã  ce script si on veut modifier des temps d'un biker. (temps de dÃ©part ou d'arrivÃ©e)
 	*/
 
 include_once("sql.php");
 include_once("globals.php");
 
 
-// récupération des paramètres POST:
+// rÃ©cupÃ©ration des paramÃ¨tres POST:
 $bikerId  = getParameterPOST("biker_id");
 $patrolId = getParameterPOST("patrol_id");
 $start1HH = getParameterPOST("start1HH");
@@ -87,7 +87,7 @@ else
 }
 
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 //Modification dans la DB
@@ -97,10 +97,10 @@ if(!mysql_query($query))
 	exit('erreur lors de la requete SQL');
 }
 
-//4) on redirige automatiquement à la page d'édition de la patrouille courante (ce qui affichera le nouveau gars et qui 
+//4) on redirige automatiquement Ã  la page d'Ã©dition de la patrouille courante (ce qui affichera le nouveau gars et qui 
 //		permettra d'en ajouter encore d'autres):
 
-// il se peut qu'un paramètre de plus, src, soit présent.
+// il se peut qu'un paramÃ¨tre de plus, src, soit prÃ©sent.
 // c'est si on arrive ici en ayant fait admin->tests plutot que admin->edit troupe->edite patrouille->edit biker.
 if(isset($_POST["src"]))
 {

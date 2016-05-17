@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	startPatrolDone.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("globals.php");
@@ -17,7 +17,7 @@ if(isset($_POST['timeField']))
 }
 else
 {
-	exit('erreur: vous n\'avez pas choisi l\'étape');
+	exit('erreur: vous n\'avez pas choisi l\'Ã©tape');
 }
 
 if(isset($_POST['method']))
@@ -26,7 +26,7 @@ if(isset($_POST['method']))
 }
 else
 {
-	exit('erreur: vous n\'avez pas choisi la méthode');
+	exit('erreur: vous n\'avez pas choisi la mÃ©thode');
 }
 
 
@@ -45,7 +45,7 @@ else if($method=="manual")
 }
 else
 {
-	exit("erreur: la methode n'as pas été définie");
+	exit("erreur: la methode n'as pas Ã©tÃ© dÃ©finie");
 }
 
 
@@ -53,7 +53,7 @@ else
 // connect to database:
 connect();
 
-// récupérer le nom de la patrouille:
+// rÃ©cupÃ©rer le nom de la patrouille:
 $patrolName = getPatrolName($patrolId);
 
 // update in the database all the bikers time of this patrol:

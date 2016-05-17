@@ -1,31 +1,31 @@
 <?php
 	/*
 		file: 	deleteTroopConfirmed.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		Si on arrive à ce fichier, ça veut dire que l'utilisateur a confirmé qu'on pouvait détruire la patrouille concernée
-		(on la distingue grâce à son "bsNum")
+		Si on arrive Ã  ce fichier, Ã§a veut dire que l'utilisateur a confirmÃ© qu'on pouvait dÃ©truire la patrouille concernÃ©e
+		(on la distingue grÃ¢ce Ã  son "bsNum")
 	*/
 include_once("globals.php");
 include_once("sql.php");
 
 
-//on récupère les bsNum:
+//on rÃ©cupÃ¨re les bsNum:
 $bsNum = getParameterGET("bsNum");
 
 
-// connection à la DB:
+// connection Ã  la DB:
 connect();
 
 
-// on détruit la troupe:
+// on dÃ©truit la troupe:
 $query = 'delete from t_troop where bsNum="'.$bsNum.'"';
 if(!mysql_query($query))
 {
-	exit("la destruction de la troupe a échoué");
+	exit("la destruction de la troupe a Ã©chouÃ©");
 }
 
-// on récupère la liste des patrol_id de cette troupe:
+// on rÃ©cupÃ¨re la liste des patrol_id de cette troupe:
 $query = 'select id from t_patrol where troop_id="'.$bsNum.'"';
 $res = mysql_query($query);
 $number_of_patrol = mysql_num_rows($res);
@@ -36,27 +36,27 @@ for($i=0;$i<$number_of_patrol;$i++)
 }
 
 // on detruit toutes les patrouilles de cette troupe:
-// on détruit la troupe:
+// on dÃ©truit la troupe:
 $query = 'delete from t_patrol where troop_id="'.$bsNum.'"';
 if(!mysql_query($query))
 {
-	exit("la destruction des patrouilles de la troupe a échoué");
+	exit("la destruction des patrouilles de la troupe a Ã©chouÃ©");
 }
 
-// on detruit tous les bikers de la troupe (grace aux id de patrouilles récupérés:
+// on detruit tous les bikers de la troupe (grace aux id de patrouilles rÃ©cupÃ©rÃ©s:
 for($i=0;$i<$number_of_patrol;$i++)
 {
 	$query = 'delete from t_biker where patrol_id="'.$patrolId[$i].'"';
 	if(!mysql_query($query))
 	{
-		exit("la destruction d'un biker de la troupe a échoué");
+		exit("la destruction d'un biker de la troupe a Ã©chouÃ©");
 	}
 }
 
 
 // on detruit tous les gars/filles de cette troupe:
 
-// on redirige automatiquement vers la page d'édition de la patrouille
+// on redirige automatiquement vers la page d'Ã©dition de la patrouille
 header('Location: admin.php');
 
 ?>

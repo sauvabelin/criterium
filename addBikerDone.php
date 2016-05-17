@@ -1,14 +1,14 @@
 <?php
 	/*
 		file: 	addBikerDone.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		On arrive a ce script apres avoir "crée" un nouveau Biker dans le fichier "addBiker.php"
-		On verifie que les noms et prénoms ont bien été rempli.
+		On arrive a ce script apres avoir "crÃ©e" un nouveau Biker dans le fichier "addBiker.php"
+		On verifie que les noms et prÃ©noms ont bien Ã©tÃ© rempli.
 		
-		Le numero de dossard peut avoir été laissé vide. (si il n'est pas encore connu).
-		Si il n'est pas vide on vérifie si il est déja présent dans la DB (on ne peut pas avoir deux bikers
-		avec le même numéro de dossard)
+		Le numero de dossard peut avoir Ã©tÃ© laissÃ© vide. (si il n'est pas encore connu).
+		Si il n'est pas vide on vÃ©rifie si il est dÃ©ja prÃ©sent dans la DB (on ne peut pas avoir deux bikers
+		avec le mÃªme numÃ©ro de dossard)
 	*/
 
 include_once("sql.php");
@@ -16,60 +16,60 @@ include_once("globals.php");
 
 $patrolId = getParameterGET("patrol_id");
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-//On prend les info entrées par l'utilisateur dans le forumlaire et envoyées par la méthode POST:
+//On prend les info entrÃ©es par l'utilisateur dans le forumlaire et envoyÃ©es par la mÃ©thode POST:
 $dossard = $_POST["dossard"];
 $firstName = $_POST["firstName"];
 $lastName = $_POST["lastName"];
 $birthYear = $_POST["birthYear"];
-// on vérifie que tous les champs on été remplis:
+// on vÃ©rifie que tous les champs on Ã©tÃ© remplis:
 if(trim($firstName)=="" || trim($lastName)=="")
 {
-	exit("Erreur: au moins un champs n'a pas été rempli");
+	exit("Erreur: au moins un champs n'a pas Ã©tÃ© rempli");
 }
 
-// SI ET SEULEMENT SI le numero de dossard a été entré, alors:
+// SI ET SEULEMENT SI le numero de dossard a Ã©tÃ© entrÃ©, alors:
 if(trim($dossard)!="")
 {
 	
-	// 1) on vérifie que c'est un nombre entier:
+	// 1) on vÃ©rifie que c'est un nombre entier:
 	if(!is_a_number($dossard))
 	{
 		exit("erreur: le dossard doit etre un nombre entier");
 	}
 	
 	
-	// 2) On vérifie que ce numéro de dossard n'existe pas déja dans la base de donnée:
+	// 2) On vÃ©rifie que ce numÃ©ro de dossard n'existe pas dÃ©ja dans la base de donnÃ©e:
 	$query = 'select * from t_biker where dossard="'.$dossard.'"';
 	$res = mysql_query($query);
-	// on regarde combien de record existent déja dans la DB (ça devrait être 0):
+	// on regarde combien de record existent dÃ©ja dans la DB (Ã§a devrait Ãªtre 0):
 	$number_of_biker = mysql_num_rows($res);
 	if($number_of_biker >= 1)
 	{
-		exit('erreur: ce numero de dossard existe deja dans la base de données');
+		exit('erreur: ce numero de dossard existe deja dans la base de donnÃ©es');
 	}
 }
 else
 {
-	// si le dossard n'a pas été entré, on met un -1 (qui signifie "inconnu")
+	// si le dossard n'a pas Ã©tÃ© entrÃ©, on met un -1 (qui signifie "inconnu")
 	$dossard=UNKNOWN;
 }
 
-// SI ET SEULEMENT SI l'année a été entré, alors:
+// SI ET SEULEMENT SI l'annÃ©e a Ã©tÃ© entrÃ©, alors:
 if(trim($birthYear)!="")
 {	
-	// 1) on vérifie que c'est un nombre entier:
+	// 1) on vÃ©rifie que c'est un nombre entier:
 	if(!is_a_number($birthYear))
 	{
-		exit("erreur: l\'année doit etre un nombre entier");
+		exit("erreur: l\'annÃ©e doit etre un nombre entier");
 	}
 }
 else
 {
-	// si l'année n'a pas été entré, on met un -1 (qui signifie "inconnu")
+	// si l'annÃ©e n'a pas Ã©tÃ© entrÃ©, on met un -1 (qui signifie "inconnu")
 	$birthYear=UNKNOWN;
 }
 
@@ -84,7 +84,7 @@ if(!mysql_query($query))
 	exit('erreur lors de la requete SQL');
 }
 
-//4) on redirige automatiquement à la page d'édition de la patrouille courante (ce qui affichera le nouveau gars et qui 
+//4) on redirige automatiquement Ã  la page d'Ã©dition de la patrouille courante (ce qui affichera le nouveau gars et qui 
 //		permettra d'en ajouter encore d'autres):
 header('Location: editPatrol.php?patrol_id='.$patrolId);
 ?>

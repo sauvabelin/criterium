@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	WARNING_createDummyBikersForTestWithTimes.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("sql.php");
@@ -12,7 +12,7 @@ connect();
 
 /*
 **
-** 1) on fixe les temps de départs de chaque patrouille:
+** 1) on fixe les temps de dÃ©parts de chaque patrouille:
 **
 */
 
@@ -37,7 +37,7 @@ for($i=0;$i<$num_of_patrol;$i++)
 
 /*
 **
-** 2) on fixe les temps d'arrivées de chaque gars/fille:
+** 2) on fixe les temps d'arrivÃ©es de chaque gars/fille:
 **
 */
 
@@ -47,14 +47,14 @@ $num_of_biker = mysql_num_rows($res);
 
 for($i=0;$i<$num_of_biker;$i++)
 {
-	// pour chaque biker: on retrouve ses heures de départ
+	// pour chaque biker: on retrouve ses heures de dÃ©part
 	$res = mysql_query('select startTime1, startTimeAttack, startTime2 from t_biker where id='.($i+1));
 	$row = mysql_fetch_assoc($res);
 	$startTime1 = $row["startTime1"];
 	$startTimeAttack = $row["startTimeAttack"];
 	$startTime2 = $row["startTime2"];
 	
-	// on choisit des heures d'arrivée. On considère que les étapes durent un temps aléatoire entre 2 et 4 heures (7200 et 14400 secondes)
+	// on choisit des heures d'arrivÃ©e. On considÃ¨re que les Ã©tapes durent un temps alÃ©atoire entre 2 et 4 heures (7200 et 14400 secondes)
 	// ou entre 4 et 6 minutes pour le contre la montre (240 et 360 secondes)
 	$endTime1 = $startTime1 + rand(7200,14400);
 	$endTimeAttack = $startTimeAttack + rand(240,360);

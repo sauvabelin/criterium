@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	changeLimitsDone.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("sql.php");
@@ -9,19 +9,19 @@ include_once("globals.php");
 
 
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-//On prend les info entrées par l'utilisateur dans le forumlaire et envoyées par la méthode POST:
+//On prend les info entrÃ©es par l'utilisateur dans le forumlaire et envoyÃ©es par la mÃ©thode POST:
 $minBiker = getParameterPOST("minBiker");
 $maxBiker = getParameterPOST("maxBiker");
 $bonus = getParameterPOST("bonus");
 
-// verification des paramètres entrés:
+// verification des paramÃ¨tres entrÃ©s:
 if(trim($minBiker)!="")
 {	
-	// 1) on vérifie que c'est un nombre entier:
+	// 1) on vÃ©rifie que c'est un nombre entier:
 	if(!is_a_number($minBiker))
 	{
 		exit("erreur: le nombre de participants doit etre un nombre entier");
@@ -34,7 +34,7 @@ else
 
 if(trim($maxBiker)!="")
 {	
-	// 1) on vérifie que c'est un nombre entier:
+	// 1) on vÃ©rifie que c'est un nombre entier:
 	if(!is_a_number($maxBiker))
 	{
 		exit("erreur: le nombre de participants doit etre un nombre entier");
@@ -47,7 +47,7 @@ else
 
 if(trim($bonus)!="")
 {	
-	// 1) on vérifie que c'est un nombre entier:
+	// 1) on vÃ©rifie que c'est un nombre entier:
 	if(!is_a_number($bonus))
 	{
 		exit("erreur: le bonus doit etre un nombre entier");
@@ -64,6 +64,6 @@ setMinBiker($minBiker);
 setMaxBiker($maxBiker);
 setBonus($bonus);
 
-//4) on redirige automatiquement à la page d'admin 
+//4) on redirige automatiquement Ã  la page d'admin 
 header('Location: admin.php');
 ?>

@@ -1,9 +1,9 @@
 <?php
 	/*
 		file: 	addPatrol.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		Ici on affiche un formulaire qui permet à l'utilisateur d'ajouter une patrouille à la troupe courante
+		Ici on affiche un formulaire qui permet Ã  l'utilisateur d'ajouter une patrouille Ã  la troupe courante
 	*/
 
 include_once("globals.php");

@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	startTroop.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("globals.php");
@@ -38,19 +38,19 @@ for($j=0;$j<$number_of_patrol;$j++)
 	
 	<body>
 		
-		<h3>Donner le départ d'une patrouille (ajouter/retirer un gars/fille, changer un numero de brassard, etc...)</h3>
+		<h3>Donner le dÃ©part d'une patrouille (ajouter/retirer un gars/fille, changer un numero de brassard, etc...)</h3>
 		<?php
 		if($number_of_patrol>0)
 		{
 			for($j=0;$j<$number_of_patrol;$j++)
 			{
-				echo '<a href="startPatrol.php?id='.$patrol[$j]["id"].'">départ de la patrouille '.$patrol[$j]["name"].'</a><br>';
+				echo '<a href="startPatrol.php?id='.$patrol[$j]["id"].'">dÃ©part de la patrouille '.$patrol[$j]["name"].'</a><br>';
 			}
 		}
 		else
 		{
 			echo '<span class="alert">Attention: </span>';
-			echo 'La troupe '.$troopName.' ne contient encore aucune patrouille dans la base de donnée';
+			echo 'La troupe '.$troopName.' ne contient encore aucune patrouille dans la base de donnÃ©e';
 			echo '<br>';
 		}
 		

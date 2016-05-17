@@ -1,19 +1,19 @@
 <?php
 	/*
 		file: 	resultsBiker.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("globals.php");
 include_once("sql.php");
 
 
-// connection à la base de données:
+// connection Ã  la base de donnÃ©es:
 connect();
 
 
 // minimalYear:
-// (les gars/filles qui sont nés avant cette date ne sont pas pris en compte dans le classement)
+// (les gars/filles qui sont nÃ©s avant cette date ne sont pas pris en compte dans le classement)
 $minYear = getMinimalYear();
 
 //--------------------------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ for($i=0;$i<$number_of_girls;$i++)
 }
 
 //--------------------------------------------------------------------------------------------------
-// Classement des ROUGES (garçons) uniquement:
+// Classement des ROUGES (garÃ§ons) uniquement:
 //--------------------------------------------------------------------------------------------------
 $query = 'SELECT t_biker.lastName,t_biker.firstName,t_biker.dossard, t_patrol.name as patrolName, t_troop.name as troopName, (t_biker.endTime1 + t_biker.endTime2 + (t_biker.endTimeAttack*' . getTimeAttackFactor() . ') - t_biker.startTime1 - t_biker.startTime2 - (t_biker.startTimeAttack*' . getTimeAttackFactor() . ')) AS totalTime FROM t_biker JOIN t_patrol ON t_biker.patrol_id=t_patrol.id JOIN t_troop ON t_troop.bsNum=t_patrol.troop_id WHERE t_troop.type='.ROUGE_G.' OR ( t_troop.type='.ECLAIREUR.' AND birthYear <'.$minYear.' AND birthYear > 1900) ORDER BY totalTime';
 $res=mysql_query($query);
@@ -86,7 +86,7 @@ for($i=0;$i<$number_of_red_girls;$i++)
 
 
 //--------------------------------------------------------------------------------------------------
-// Classement des GRIS (garçons) uniquement:
+// Classement des GRIS (garÃ§ons) uniquement:
 //--------------------------------------------------------------------------------------------------
 $query = 'SELECT t_biker.lastName,t_biker.firstName,t_biker.dossard, t_patrol.name as patrolName, t_troop.name as troopName, (t_biker.endTime1 + t_biker.endTime2 + (t_biker.endTimeAttack*' . getTimeAttackFactor() . ') - t_biker.startTime1 - t_biker.startTime2 - (t_biker.startTimeAttack*' . getTimeAttackFactor() . ')) AS totalTime FROM t_biker JOIN t_patrol ON t_biker.patrol_id=t_patrol.id JOIN t_troop ON t_troop.bsNum=t_patrol.troop_id WHERE t_troop.type='.CLANG.' ORDER BY totalTime';
 $res=mysql_query($query);
@@ -129,8 +129,8 @@ for($i=0;$i<$number_of_grey_girls;$i++)
 	
 	<?php
 	
-		echo '<span class="alert">Les gars/filles qui sont nés AVANT '.$minYear.' sont dans le classement avec les rouges</span></br>';
-		echo '(cette date peut être modifiée dans le panneau d\'administration)';
+		echo '<span class="alert">Les gars/filles qui sont nÃ©s AVANT '.$minYear.' sont dans le classement avec les rouges</span></br>';
+		echo '(cette date peut Ãªtre modifiÃ©e dans le panneau d\'administration)';
 		echo '<br><br>';
 	
 	
@@ -139,10 +139,10 @@ for($i=0;$i<$number_of_grey_girls;$i++)
 		//--------------------------------------------------------------------------------------------------
 		echo '<hr>';
 		echo '<div class="prompt">Classement des gars:</div>';
-		echo '(sauf ceux nés avant '.$minYear.')';
+		echo '(sauf ceux nÃ©s avant '.$minYear.')';
 		echo '<table border ="1">';
 		echo '<tr>';
-		echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>Prénom</td><td>Troupe</td><td>Patrouille</td>';
+		echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>PrÃ©nom</td><td>Troupe</td><td>Patrouille</td>';
 		echo '</tr>';
 		for($i=0;$i<$number_of_boys;$i++)
 		{
@@ -164,10 +164,10 @@ for($i=0;$i<$number_of_grey_girls;$i++)
 		//--------------------------------------------------------------------------------------------------
 		echo '<hr>';
 		echo '<div class="prompt">Classement des filles:</div>';
-		echo '(sauf celles nées avant '.$minYear.')';
+		echo '(sauf celles nÃ©es avant '.$minYear.')';
 		echo '<table border ="1">';
 		echo '<tr>';
-		echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>Prénom</td><td>Troupe</td><td>Patrouille</td>';
+		echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>PrÃ©nom</td><td>Troupe</td><td>Patrouille</td>';
 		echo '</tr>';
 		for($i=0;$i<$number_of_girls;$i++)
 		{
@@ -185,17 +185,17 @@ for($i=0;$i<$number_of_grey_girls;$i++)
 		br(3);
 		
 		//--------------------------------------------------------------------------------------------------
-		// affichage Classement des ROUGES (garçons):
+		// affichage Classement des ROUGES (garÃ§ons):
 		//--------------------------------------------------------------------------------------------------
 		echo '<hr>';
-		echo '<div class="prompt">Classement des rouges (garçons):</div>';
-		echo '(et des gars nés avant '.$minYear.')';
+		echo '<div class="prompt">Classement des rouges (garÃ§ons):</div>';
+		echo '(et des gars nÃ©s avant '.$minYear.')';
     
     if($number_of_red_boys > 0) {
       
       echo '<table border ="1">';
       echo '<tr>';
-      echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>Prénom</td><td>Troupe</td><td>Patrouille</td>';
+      echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>PrÃ©nom</td><td>Troupe</td><td>Patrouille</td>';
       echo '</tr>';
       for($i=0;$i<$number_of_red_boys;$i++)
       {
@@ -211,7 +211,7 @@ for($i=0;$i<$number_of_grey_girls;$i++)
       }
       echo '</table>';
     } else {
-      echo '<p>Il n\'y a personne dans cette catégorie</p>';
+      echo '<p>Il n\'y a personne dans cette catÃ©gorie</p>';
     }
 		br(3);
 		
@@ -220,12 +220,12 @@ for($i=0;$i<$number_of_grey_girls;$i++)
 		//--------------------------------------------------------------------------------------------------
 		echo '<hr>';
 		echo '<div class="prompt">Classement des rouges (filles):</div>';
-		echo '(et des filles nées avant '.$minYear.')';
+		echo '(et des filles nÃ©es avant '.$minYear.')';
     
     if($number_of_red_girls > 0) {
       echo '<table border ="1">';
       echo '<tr>';
-      echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>Prénom</td><td>Troupe</td><td>Patrouille</td>';
+      echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>PrÃ©nom</td><td>Troupe</td><td>Patrouille</td>';
       echo '</tr>';
       for($i=0;$i<$number_of_red_girls;$i++)
       {
@@ -241,20 +241,20 @@ for($i=0;$i<$number_of_grey_girls;$i++)
       }
       echo '</table>';    
     } else {
-      echo '<p>Il n\'y a personne dans cette catégorie</p>';
+      echo '<p>Il n\'y a personne dans cette catÃ©gorie</p>';
     }
 		br(3);
 		
 		//--------------------------------------------------------------------------------------------------
-		// affichage Classement des GRIS (garçons):
+		// affichage Classement des GRIS (garÃ§ons):
 		//--------------------------------------------------------------------------------------------------
 		echo '<hr>';
-		echo '<div class="prompt">Classement des gris (garçons):</div>';
+		echo '<div class="prompt">Classement des gris (garÃ§ons):</div>';
     
     if($number_of_grey_boys > 0) {
       echo '<table border ="1">';
       echo '<tr>';
-      echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>Prénom</td>';
+      echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>PrÃ©nom</td>';
       echo '</tr>';
       for($i=0;$i<$number_of_grey_boys;$i++)
       {
@@ -268,7 +268,7 @@ for($i=0;$i<$number_of_grey_girls;$i++)
       }
       echo '</table>';
     } else {
-      echo '<p>Il n\'y a personne dans cette catégorie</p>';
+      echo '<p>Il n\'y a personne dans cette catÃ©gorie</p>';
     }
 		br(3);
 		
@@ -281,7 +281,7 @@ for($i=0;$i<$number_of_grey_girls;$i++)
     if($number_of_grey_girls > 0) {
       echo '<table border ="1">';
       echo '<tr>';
-      echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>Prénom</td>';
+      echo '<td>Rang</td><td>Temps total</td><td>dossard</td><td>Nom</td><td>PrÃ©nom</td>';
       echo '</tr>';
       for($i=0;$i<$number_of_grey_girls;$i++)
       {
@@ -295,7 +295,7 @@ for($i=0;$i<$number_of_grey_girls;$i++)
       }
       echo '</table>';    
     } else {
-      echo '<p>Il n\'y a personne dans cette catégorie</p>';
+      echo '<p>Il n\'y a personne dans cette catÃ©gorie</p>';
     }
 		br(3);
     

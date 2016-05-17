@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	changeLimits.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
 	*/
 
@@ -9,11 +9,11 @@ include_once("globals.php");
 include_once("sql.php");      
 
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-// on récupère les limites:
+// on rÃ©cupÃ¨re les limites:
 $minBiker 	= getMinBiker();
 $maxBiker 	= getMaxBiker();
 $bonus			= getBonus();
@@ -30,7 +30,7 @@ $bonus			= getBonus();
 		
 		<?php
 		
-		// on affiche un formulaire avec les champs déja remplis avec les champs actuels		
+		// on affiche un formulaire avec les champs dÃ©ja remplis avec les champs actuels		
 		echo '<form action="changeLimitsDone.php" method="post">';
 		
 		echo 'les patrouilles qui ont MOINS QUE ';
@@ -39,9 +39,9 @@ $bonus			= getBonus();
 		
 		echo 'les patrouilles qui ont PLUS QUE ';
 		echo '<input type="text" name="maxBiker" id="maxBikerId" value="'.$maxBiker.'" size="2">';
-		echo ' participants reçoivent un bonus<br>';
+		echo ' participants reÃ§oivent un bonus<br>';
 		
-		echo 'le bonus est une réduction de ';
+		echo 'le bonus est une rÃ©duction de ';
 		echo '<input type="text" name="bonus" id="bonusId" value="'.$bonus.'" size="4">';
 		echo ' secondes par participant de plus<br>';
 		

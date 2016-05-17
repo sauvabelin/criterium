@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	sql.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 function displayTable($tableName)
@@ -49,11 +49,11 @@ function connect()
   $base 		=	"criterium";
   if(!mysql_connect($server,$user,$password))
   {
-  	exit('echec de la connection à la base de donnée avec les paramètres: server=['.$server.'], user=['.$user.'], password=['.$password.']');
+  	exit('echec de la connection Ã  la base de donnÃ©e avec les paramÃ¨tres: server=['.$server.'], user=['.$user.'], password=['.$password.']');
   }
   if(!mysql_select_db($base))
   {
-  	exit('echec lors de la séléction de la base de donnée avec le paramètre base=['.$base.']');
+  	exit('echec lors de la sÃ©lÃ©ction de la base de donnÃ©e avec le paramÃ¨tre base=['.$base.']');
   }
 }
 ?>

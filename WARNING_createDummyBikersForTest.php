@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	WARNING_createDummyBikersForTest.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("sql.php");
@@ -13,7 +13,7 @@ connect();
 
 
 /*
-mysql_query('insert into t_biker values("NULL", "12","Benoît","Uffer","1978","1","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
+mysql_query('insert into t_biker values("NULL", "12","BenoÃ®t","Uffer","1978","1","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
 mysql_query('insert into t_biker values("NULL", "72","Julien","Weibel","1981","1","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
 mysql_query('insert into t_biker values("NULL", "46","Michael","Wyssa","1982","1","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
 mysql_query('insert into t_biker values("NULL", "01","Roberto","De Col","1980","22","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
@@ -21,9 +21,9 @@ mysql_query('insert into t_biker values("NULL", "33","Arnaud","Jaccoud","1978","
 mysql_query('insert into t_biker values("NULL", "65","Calixe","Cathomen","1980","22","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
 mysql_query('insert into t_biker values("NULL", "19","Philippe","Marguerat","1980","22","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
 mysql_query('insert into t_biker values("NULL", "13","Dominique","Moinat","1980","33","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
-mysql_query('insert into t_biker values("NULL", "45","Claude-Hélène","Goy","1978","33","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
+mysql_query('insert into t_biker values("NULL", "45","Claude-HÃ©lÃ¨ne","Goy","1978","33","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
 mysql_query('insert into t_biker values("NULL", "22","Nathalie","Wenger","1979","37","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
-mysql_query('insert into t_biker values("NULL", "36","Anne-Séverine","Michaud","1978","37","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
+mysql_query('insert into t_biker values("NULL", "36","Anne-SÃ©verine","Michaud","1978","37","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
 mysql_query('insert into t_biker values("NULL", "07","Camille","Perrier","1980","37","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
 mysql_query('insert into t_biker values("NULL", "77","Gilles","Bonnard","1981","45","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');
 mysql_query('insert into t_biker values("NULL", "15","Sylvain","Rollinet","1982","45","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.","'.UNKNOWN.'.")');

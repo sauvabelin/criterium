@@ -1,11 +1,11 @@
 <?php
 	/*
 		file: 	editTroop.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		C'est le fichier d'édition d'une troupe:
-		l'id de la troupe (bsNum) est passée en paramètre par la méthode GET
-		On affiche une liste des patrouilles appartenant à cette troupe avec des liens "modifier" et "supprimer"
+		C'est le fichier d'Ã©dition d'une troupe:
+		l'id de la troupe (bsNum) est passÃ©e en paramÃ¨tre par la mÃ©thode GET
+		On affiche une liste des patrouilles appartenant Ã  cette troupe avec des liens "modifier" et "supprimer"
 		ET on affiche un lien qui permet de rajouter une patrouille dans cette troupe
 	*/
 	
@@ -15,10 +15,10 @@ include_once("sql.php");
 // on utilise une variable locale:
 $bsNum = getParameterGET("bsNum");
 
-// connection à la base de donnée:
+// connection Ã  la base de donnÃ©e:
 connect();
 
-// on récupère le nom de la troupe:
+// on rÃ©cupÃ¨re le nom de la troupe:
 $troopName = getTroopName($bsNum);
 
 // get all the patrol that are included in this troop (according to content of DB)
@@ -58,7 +58,7 @@ for($j=0;$j<$number_of_patrol;$j++)
 		for($j=0;$j<$number_of_patrol;$j++)
 		{
 			echo '<tr>';
-			echo '<td>'.$patrol[$j]["name"].'</td><td><a href="editPatrol.php?patrol_id='.$patrol[$j]["id"].'">éditer</a></td><td><a href="deletePatrol.php?id='.$patrol[$j]["id"].'&bsNum='.$bsNum.'">supprimer</a></td>';
+			echo '<td>'.$patrol[$j]["name"].'</td><td><a href="editPatrol.php?patrol_id='.$patrol[$j]["id"].'">Ã©diter</a></td><td><a href="deletePatrol.php?id='.$patrol[$j]["id"].'&bsNum='.$bsNum.'">supprimer</a></td>';
 			echo '</tr>';
 		}
 		
@@ -69,8 +69,8 @@ for($j=0;$j<$number_of_patrol;$j++)
 		echo '<div class="prompt">Il n\'y a encore aucune patrouille dans cette troupe!</div>';
 	}
 	
-	// un lien qui permet d'ajouter une patrouille à la troupe:
-	echo '<br><a href="addPatrol.php?bsNum='.$bsNum.'">ajouter une patrouille à cette troupe</a><br>';
+	// un lien qui permet d'ajouter une patrouille Ã  la troupe:
+	echo '<br><a href="addPatrol.php?bsNum='.$bsNum.'">ajouter une patrouille Ã  cette troupe</a><br>';
 	
 	displayFooter();
 	?>

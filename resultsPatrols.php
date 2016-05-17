@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	resultsPatrols.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 	
 include_once("globals.php");
@@ -13,7 +13,7 @@ connect();
 
 
 // minimalYear:
-// (les gars/filles qui sont nés avant cette date ne sont pas pris en compte dans le classement)
+// (les gars/filles qui sont nÃ©s avant cette date ne sont pas pris en compte dans le classement)
 $minYear = getMinimalYear();
 
 // minBiker:
@@ -25,7 +25,7 @@ $minBiker = getMinBiker();
 $maxBiker = getMaxBiker();
 
 // bonus:
-// ce nombre représente les secondes a retirer par biker en plus dans les patrouilles qui ont plus de maxBiker participants
+// ce nombre reprÃ©sente les secondes a retirer par biker en plus dans les patrouilles qui ont plus de maxBiker participants
 $bonus = getBonus();
 
 
@@ -33,7 +33,7 @@ $bonus = getBonus();
 //--------------------------------------------------------------------------------------------------
 // Classement des patrouilles ECLAIREURS uniquement:
 //--------------------------------------------------------------------------------------------------
-// Note: la colonne qui contient la moyenne DOIT s'appeller "moyenne" car cette chaine est utilisée dans la fonction de tri "compareMoyenne"
+// Note: la colonne qui contient la moyenne DOIT s'appeller "moyenne" car cette chaine est utilisÃ©e dans la fonction de tri "compareMoyenne"
 $query = 'SELECT AVG(endTime1+endTime2+(endTimeAttack*' . getTimeAttackFactor() . ')-startTime1-startTime2-(startTimeAttack*' . getTimeAttackFactor() . ')) AS moyenne, t_patrol.name as patrolName, t_patrol.id as patrolId, t_troop.name as troopName FROM t_biker JOIN t_patrol ON t_biker.patrol_id=t_patrol.id JOIN t_troop ON t_troop.bsNum=t_patrol.troop_id WHERE t_troop.type='.ECLAIREUR.' AND birthYear >='.$minYear.' GROUP BY t_patrol.id ORDER BY moyenne';
 $res=mysql_query($query);
 $number_of_patrol_eclaireur = mysql_num_rows($res);
@@ -43,28 +43,28 @@ for($i=0;$i<$number_of_patrol_eclaireur;$i++)
 	$eclaireur[$i]["patrolName"] = $row["patrolName"];
 	$eclaireur[$i]["troopName"] = $row["troopName"];
 	// pour chaque patrouille, il faut compter le nombre de gars/filles, car:
-	//   - si ce nombre est plus grand que 6 (par défaut), on donne un bonus à la patrouille
-	//   - si ce nombre est plus petit que 2 (par défaut), on retire la patrouille du classement (uniquement lors de l'affichage)
+	//   - si ce nombre est plus grand que 6 (par dÃ©faut), on donne un bonus Ã  la patrouille
+	//   - si ce nombre est plus petit que 2 (par dÃ©faut), on retire la patrouille du classement (uniquement lors de l'affichage)
 	$query = 'SELECT count(*) as number_of_bikers from t_biker where patrol_id='.$row["patrolId"];
 	$inres=mysql_query($query);
 	$inrow=mysql_fetch_assoc($inres);
 	$eclaireur[$i]["number_of_bikers"] = $inrow["number_of_bikers"];
 	if($inrow["number_of_bikers"] >= $maxBiker)
 	{
-		// si le nombre de participants est plus grand que 6, alors on réduit le temps moyen de 30 secondes par participants:
+		// si le nombre de participants est plus grand que 6, alors on rÃ©duit le temps moyen de 30 secondes par participants:
 		$row["moyenne"] -= ($bonus)*($inrow["number_of_bikers"] - $maxBiker) ;
 	}
-	// le temps final est passé en gmdate:
+	// le temps final est passÃ© en gmdate:
 	$eclaireur[$i]["moyenne"] = gmdate("H \h i \m s \s",$row["moyenne"]);
 }
-// a cause des eventuels bonus, le tableau n'est peut être plus trié. Il faut le retrier:
+// a cause des eventuels bonus, le tableau n'est peut Ãªtre plus triÃ©. Il faut le retrier:
 usort($eclaireur,"compareMoyennes");
 
 
 //--------------------------------------------------------------------------------------------------
 // Classement des patrouilles ECLAIREUSES uniquement:
 //--------------------------------------------------------------------------------------------------
-// Note: la colonne qui contient la moyenne DOIT s'appeller "moyenne" car cette chaine est utilisée dans la fonction de tri "compareMoyenne"
+// Note: la colonne qui contient la moyenne DOIT s'appeller "moyenne" car cette chaine est utilisÃ©e dans la fonction de tri "compareMoyenne"
 $query = 'SELECT AVG(endTime1+endTime2+(endTimeAttack*' . getTimeAttackFactor() . ')-startTime1-startTime2-(startTimeAttack*' . getTimeAttackFactor() . ')) AS moyenne, t_patrol.name as patrolName, t_patrol.id as patrolId, t_troop.name as troopName FROM t_biker JOIN t_patrol ON t_biker.patrol_id=t_patrol.id JOIN t_troop ON t_troop.bsNum=t_patrol.troop_id WHERE t_troop.type='.ECLAIREUSE.' AND birthYear >='.$minYear.' GROUP BY t_patrol.id ORDER BY moyenne';
 $res=mysql_query($query);
 $number_of_patrol_eclaireuse = mysql_num_rows($res);
@@ -74,27 +74,27 @@ for($i=0;$i<$number_of_patrol_eclaireuse;$i++)
 	$eclaireuse[$i]["patrolName"] = $row["patrolName"];
 	$eclaireuse[$i]["troopName"] = $row["troopName"];
 	// pour chaque patrouille, il faut compter le nombre de gars/filles, car:
-	//   - si ce nombre est plus grand que 6 (par défaut), on donne un bonus à la patrouille
-	//   - si ce nombre est plus petit que 2 (par défaut), on retire la patrouille du classement (uniquement lors de l'affichage)
+	//   - si ce nombre est plus grand que 6 (par dÃ©faut), on donne un bonus Ã  la patrouille
+	//   - si ce nombre est plus petit que 2 (par dÃ©faut), on retire la patrouille du classement (uniquement lors de l'affichage)
 	$query = 'SELECT count(*) as number_of_bikers from t_biker where patrol_id='.$row["patrolId"];
 	$inres=mysql_query($query);
 	$inrow=mysql_fetch_assoc($inres);
 	$eclaireuse[$i]["number_of_bikers"] = $inrow["number_of_bikers"];
 	if($inrow["number_of_bikers"] >= $maxBiker)
 	{
-		// si le nombre de participants est plus grand que 6, alors on réduit le temps moyen de 30 secondes par participants:
+		// si le nombre de participants est plus grand que 6, alors on rÃ©duit le temps moyen de 30 secondes par participants:
 		$row["moyenne"] -= ($bonus)*($inrow["number_of_bikers"] - $maxBiker) ;
 	}
-	// le temps final est passé en gmdate:
+	// le temps final est passÃ© en gmdate:
 	$eclaireuse[$i]["moyenne"] = gmdate("H \h i \m s \s",$row["moyenne"]);
 }
-// a cause des eventuels bonus, le tableau n'est peut être plus trié. Il faut le retrier:
+// a cause des eventuels bonus, le tableau n'est peut Ãªtre plus triÃ©. Il faut le retrier:
 usort($eclaireuse,"compareMoyennes");
 
 //--------------------------------------------------------------------------------------------------
 // Classement des patrouilles ECLAIREUR ET ECLAIREUSES:
 //--------------------------------------------------------------------------------------------------
-// Note: la colonne qui contient la moyenne DOIT s'appeller "moyenne" car cette chaine est utilisée dans la fonction de tri "compareMoyenne"
+// Note: la colonne qui contient la moyenne DOIT s'appeller "moyenne" car cette chaine est utilisÃ©e dans la fonction de tri "compareMoyenne"
 $query = 'SELECT AVG(endTime1+endTime2+(endTimeAttack*' . getTimeAttackFactor() . ')-startTime1-startTime2-(startTimeAttack*' . getTimeAttackFactor() . ')) AS moyenne, t_patrol.name as patrolName, t_patrol.id as patrolId, t_troop.name as troopName FROM t_biker JOIN t_patrol ON t_biker.patrol_id=t_patrol.id JOIN t_troop ON t_troop.bsNum=t_patrol.troop_id WHERE ( t_troop.type="'.ECLAIREUR.'" OR t_troop.type="'.ECLAIREUSE.'" ) AND birthYear >='.$minYear.' GROUP BY t_patrol.id ORDER BY moyenne';
 $res=mysql_query($query);
 $number_of_patrol_both = mysql_num_rows($res);
@@ -104,21 +104,21 @@ for($i=0;$i<$number_of_patrol_both;$i++)
 	$both[$i]["patrolName"] = $row["patrolName"];
 	$both[$i]["troopName"] = $row["troopName"];
 	// pour chaque patrouille, il faut compter le nombre de gars/filles, car:
-	//   - si ce nombre est plus grand que 6 (par défaut), on donne un bonus à la patrouille
-	//   - si ce nombre est plus petit que 2 (par défaut), on retire la patrouille du classement (uniquement lors de l'affichage)
+	//   - si ce nombre est plus grand que 6 (par dÃ©faut), on donne un bonus Ã  la patrouille
+	//   - si ce nombre est plus petit que 2 (par dÃ©faut), on retire la patrouille du classement (uniquement lors de l'affichage)
 	$query = 'SELECT count(*) as number_of_bikers from t_biker where patrol_id='.$row["patrolId"];
 	$inres=mysql_query($query);
 	$inrow=mysql_fetch_assoc($inres);
 	$both[$i]["number_of_bikers"] = $inrow["number_of_bikers"];
 	if($inrow["number_of_bikers"] >= $maxBiker)
 	{
-		// si le nombre de participants est plus grand que 6, alors on réduit le temps moyen de 30 secondes par participants:
+		// si le nombre de participants est plus grand que 6, alors on rÃ©duit le temps moyen de 30 secondes par participants:
 		$row["moyenne"] -= ($bonus)*($inrow["number_of_bikers"] - $maxBiker) ;
 	}
-	// le temps final est passé en gmdate:
+	// le temps final est passÃ© en gmdate:
 	$both[$i]["moyenne"] = gmdate("H \h i \m s \s",$row["moyenne"]);
 }
-// a cause des eventuels bonus, le tableau n'est peut être plus trié. Il faut le retrier:
+// a cause des eventuels bonus, le tableau n'est peut Ãªtre plus triÃ©. Il faut le retrier:
 usort($both,"compareMoyennes");
 
 ?>
@@ -133,11 +133,11 @@ usort($both,"compareMoyennes");
 	
 	<?php
 		
-		// on avertit que les gars/fille "trop vieux" ne sont pas comptés, et on explique les bonus:
-		echo '<span class="prompt">Les gars/filles qui sont nés AVANT '.$minYear.' ne sont pas comptés dans le classement</span></br>';
+		// on avertit que les gars/fille "trop vieux" ne sont pas comptÃ©s, et on explique les bonus:
+		echo '<span class="prompt">Les gars/filles qui sont nÃ©s AVANT '.$minYear.' ne sont pas comptÃ©s dans le classement</span></br>';
 		echo '<span class="prompt">Les patrouille qui ont MOINS QUE '.$minBiker.' gars/filles ne sont pas dans le classement</span></br>';
 		echo '<span class="prompt">Les patrouille qui ont PLUS DE '.$maxBiker.' ont un bonus de '.$bonus.' secondes par gars/fille en plus</span></br>';
-		echo '(ces valeurs peuvent être modifiées dans le panneau d\'administration)';
+		echo '(ces valeurs peuvent Ãªtre modifiÃ©es dans le panneau d\'administration)';
 		br(5);
 	
 	

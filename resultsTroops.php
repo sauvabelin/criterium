@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	resultsTroops.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("globals.php");
@@ -13,7 +13,7 @@ connect();
 
 
 // minimalYear:
-// (les gars/filles qui sont nés avant cette date ne sont pas pris en compte dans le classement)
+// (les gars/filles qui sont nÃ©s avant cette date ne sont pas pris en compte dans le classement)
 $minYear = getMinimalYear();
 
 // maxBiker:
@@ -21,7 +21,7 @@ $minYear = getMinimalYear();
 $maxBiker = getMaxBiker();
 
 // bonus:
-// ce nombre représente les secondes a retirer par biker en plus dans les patrouilles qui ont plus de maxBiker participants
+// ce nombre reprÃ©sente les secondes a retirer par biker en plus dans les patrouilles qui ont plus de maxBiker participants
 $bonus = getBonus();
 
 //--------------------------------------------------------------------------------------------------
@@ -34,8 +34,8 @@ for($i=0;$i<$number_of_troop_eclaireur;$i++)
 {
 	$row = mysql_fetch_assoc($res);
 	$eclaireur[$i]["troopName"] = $row["troopName"];
-	// pour chaque troupe, il faut calculer si le nombre de gar/fille dépasse un maximum, afin de donner un bonus.
-	// le max est égal au max pour les patrouilles, multiplié par le nombre de patrouille dans la troupe
+	// pour chaque troupe, il faut calculer si le nombre de gar/fille dÃ©passe un maximum, afin de donner un bonus.
+	// le max est Ã©gal au max pour les patrouilles, multipliÃ© par le nombre de patrouille dans la troupe
 	
 	// calcul du max pour la troupe courant:
 	$query = 'SELECT count(*) as number_of_patrol from t_patrol where troop_id='.$row["bsNum"];
@@ -54,14 +54,14 @@ for($i=0;$i<$number_of_troop_eclaireur;$i++)
 	// on soustrait le bonus si necessaire:
 	if($num >= $max)
 	{
-		// si le nombre de participants est plus grand que 6, alors on réduit le temps moyen de 30 secondes par participants:
+		// si le nombre de participants est plus grand que 6, alors on rÃ©duit le temps moyen de 30 secondes par participants:
 		$row["moyenne"] -= ($bonus)*($num - $max) ;
 	}
 	
-	// le temps final est passé en gmdate:
+	// le temps final est passÃ© en gmdate:
 	$eclaireur[$i]["moyenne"] = gmdate("H \h i \m s \s",$row["moyenne"]);	
 }
-// a cause des eventuels bonus, le tableau n'est peut être plus trié. Il faut le retrier:
+// a cause des eventuels bonus, le tableau n'est peut Ãªtre plus triÃ©. Il faut le retrier:
 usort($eclaireur,"compareMoyennes");
 
 //--------------------------------------------------------------------------------------------------
@@ -74,8 +74,8 @@ for($i=0;$i<$number_of_troop_eclaireuse;$i++)
 {
 	$row = mysql_fetch_assoc($res);
 	$eclaireuse[$i]["troopName"] = $row["troopName"];
-	// pour chaque troupe, il faut calculer si le nombre de gar/fille dépasse un maximum, afin de donner un bonus.
-	// le max est égal au max pour les patrouilles, multiplié par le nombre de patrouille dans la troupe
+	// pour chaque troupe, il faut calculer si le nombre de gar/fille dÃ©passe un maximum, afin de donner un bonus.
+	// le max est Ã©gal au max pour les patrouilles, multipliÃ© par le nombre de patrouille dans la troupe
 	
 	// calcul du max pour la troupe courant:
 	$query = 'SELECT count(*) as number_of_patrol from t_patrol where troop_id='.$row["bsNum"];
@@ -94,14 +94,14 @@ for($i=0;$i<$number_of_troop_eclaireuse;$i++)
 	// on soustrait le bonus si necessaire:
 	if($num >= $max)
 	{
-		// si le nombre de participants est plus grand que 6, alors on réduit le temps moyen de 30 secondes par participants:
+		// si le nombre de participants est plus grand que 6, alors on rÃ©duit le temps moyen de 30 secondes par participants:
 		$row["moyenne"] -= ($bonus)*($num - $max) ;
 	}
 	
-	// le temps final est passé en gmdate:
+	// le temps final est passÃ© en gmdate:
 	$eclaireuse[$i]["moyenne"] = gmdate("H \h i \m s \s",$row["moyenne"]);	
 }
-// a cause des eventuels bonus, le tableau n'est peut être plus trié. Il faut le retrier:
+// a cause des eventuels bonus, le tableau n'est peut Ãªtre plus triÃ©. Il faut le retrier:
 usort($eclaireuse,"compareMoyennes");
 
 //--------------------------------------------------------------------------------------------------
@@ -115,8 +115,8 @@ for($i=0;$i<$number_of_troop_both;$i++)
 	$row = mysql_fetch_assoc($res);
 	$both[$i]["moyenne"] = gmdate("H \h i \m s \s",$row["moyenne"]);
 	$both[$i]["troopName"] = $row["troopName"];
-	// pour chaque troupe, il faut calculer si le nombre de gar/fille dépasse un maximum, afin de donner un bonus.
-	// le max est égal au max pour les patrouilles, multiplié par le nombre de patrouille dans la troupe
+	// pour chaque troupe, il faut calculer si le nombre de gar/fille dÃ©passe un maximum, afin de donner un bonus.
+	// le max est Ã©gal au max pour les patrouilles, multipliÃ© par le nombre de patrouille dans la troupe
 	
 	// calcul du max pour la troupe courant:
 	$query = 'SELECT count(*) as number_of_patrol from t_patrol where troop_id='.$row["bsNum"];
@@ -135,18 +135,18 @@ for($i=0;$i<$number_of_troop_both;$i++)
 	// on soustrait le bonus si necessaire:
 	if($num >= $max)
 	{
-		// si le nombre de participants est plus grand que 6, alors on réduit le temps moyen de 30 secondes par participants:
+		// si le nombre de participants est plus grand que 6, alors on rÃ©duit le temps moyen de 30 secondes par participants:
 		$row["moyenne"] -= ($bonus)*($num - $max) ;
 	}
 	
-	// le temps final est passé en gmdate:
+	// le temps final est passÃ© en gmdate:
 	$both[$i]["moyenne"] = gmdate("H \h i \m s \s",$row["moyenne"]);	
 }
-// a cause des eventuels bonus, le tableau n'est peut être plus trié. Il faut le retrier:
+// a cause des eventuels bonus, le tableau n'est peut Ãªtre plus triÃ©. Il faut le retrier:
 usort($both,"compareMoyennes");
 
 //--------------------------------------------------------------------------------------------------
-// Classement des troupes ROUGE (garçon et filles):
+// Classement des troupes ROUGE (garÃ§on et filles):
 //--------------------------------------------------------------------------------------------------
 $query = 'SELECT AVG(endTime1+endTime2+(endTimeAttack*' . getTimeAttackFactor() . ')-startTime1-startTime2-(startTimeAttack*' . getTimeAttackFactor() . ')) AS moyenne, t_troop.name as troopName FROM t_biker JOIN t_patrol ON t_biker.patrol_id=t_patrol.id JOIN t_troop ON t_troop.bsNum=t_patrol.troop_id WHERE ( t_troop.type="'.ROUGE_G.'" OR t_troop.type="'.ROUGE_F.'") GROUP BY t_troop.bsNum ORDER BY moyenne';
 $res=mysql_query($query);
@@ -169,8 +169,8 @@ for($i=0;$i<$number_of_troop_red;$i++)
 	<body>
 	
 	<?php
-	  echo '<span class="prompt">Les gars/filles qui sont nés AVANT '.$minYear.' ne sont pas dans le classement</span></br>';
-		echo '(cette date peut être modifiée dans le panneau d\'administration)';
+	  echo '<span class="prompt">Les gars/filles qui sont nÃ©s AVANT '.$minYear.' ne sont pas dans le classement</span></br>';
+		echo '(cette date peut Ãªtre modifiÃ©e dans le panneau d\'administration)';
 		br(5);
 	
 	
@@ -241,10 +241,10 @@ for($i=0;$i<$number_of_troop_red;$i++)
 		br(3);
 		
 		//--------------------------------------------------------------------------------------------------
-		// affichage Classement des troupes ROUGES (garçons et filles confondus):
+		// affichage Classement des troupes ROUGES (garÃ§ons et filles confondus):
 		//--------------------------------------------------------------------------------------------------
 		echo '<hr>';
-		echo '<div class="prompt">Classement des troupes rouges (garçons et filles confondus):</div>';
+		echo '<div class="prompt">Classement des troupes rouges (garÃ§ons et filles confondus):</div>';
 		echo '<table border ="1">';
 		echo '<tr>';
 		echo '<td>Position</td><td>temps moyen</td><td>Troupe</td>';

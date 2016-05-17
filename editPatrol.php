@@ -1,11 +1,11 @@
 <?php
 	/*
 		file: 	editPatrol.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		C'est le fichier d'édition d'une troupe:
-		l'id de la patrouille est passée en paramètre par la méthode GET (en cliquant sur le lien "modifier" dans le fichier editTroop.php
-		On affiche une liste des gars/fille appartenant à cette patrouille avec un lien "supprimer"
+		C'est le fichier d'Ã©dition d'une troupe:
+		l'id de la patrouille est passÃ©e en paramÃ¨tre par la mÃ©thode GET (en cliquant sur le lien "modifier" dans le fichier editTroop.php
+		On affiche une liste des gars/fille appartenant Ã  cette patrouille avec un lien "supprimer"
 		ET on affiche un lien qui permet de rajouter un gars/fille dans cette patrouille
 	*/
 
@@ -21,7 +21,7 @@ $patrolId = getParameterGET("patrol_id");
 connect();
 
 
-// on recupère le nom de la patrouille:
+// on recupÃ¨re le nom de la patrouille:
 $patrolName=getPatrolName($patrolId);
 
 //get All the bikers of the patrol:
@@ -70,7 +70,7 @@ for($i=0;$i<$number_of_biker;$i++)
 		echo '<span class ="prompt">Liste des gars/filles:</span><br>';
 		echo '<table border="1">';
 		echo '<tr>';
-		echo '<td>Dossard</td><td>Nom</td><td>Prénom</td><td>Année</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>';
+		echo '<td>Dossard</td><td>Nom</td><td>PrÃ©nom</td><td>AnnÃ©e</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>';
 		echo '</tr>';
 		
 		for($i=0;$i<$number_of_biker;$i++)
@@ -93,7 +93,7 @@ for($i=0;$i<$number_of_biker;$i++)
 	
 	echo '</table>';
 	
-	echo '<br><a href="addBiker.php?patrol_id='.$patrolId.'">ajouter un gars/fille à cette patrouille</a><br>';
+	echo '<br><a href="addBiker.php?patrol_id='.$patrolId.'">ajouter un gars/fille Ã  cette patrouille</a><br>';
 	
 	
 	

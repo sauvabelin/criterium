@@ -1,18 +1,18 @@
 <?php
 	/*
 		file: 	addBiker.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		On est en train d'éditer une patrouille (la patrolId est en variable GET.
+		On est en train d'Ã©diter une patrouille (la patrolId est en variable GET.
 		cette page affiche un formulaire qui permet d'ajouter un gars/fille
-		(num de dossard, prénom et nom)
+		(num de dossard, prÃ©nom et nom)
 	*/
 
 include_once("globals.php");
 include_once("sql.php");      
 
 
-// on recupere juste l'id de la patrouille pour le refiler au prochain script (qui ajoute le biker à sa patrouille)
+// on recupere juste l'id de la patrouille pour le refiler au prochain script (qui ajoute le biker Ã  sa patrouille)
 $patrolId = getParameterGET("patrol_id");
 
 
@@ -35,12 +35,12 @@ $patrolId = getParameterGET("patrol_id");
 			
 			<table>
 				<tr>
-					<td align="right"><label for="dossardId">Numéro Dossard:</label></td>
+					<td align="right"><label for="dossardId">NumÃ©ro Dossard:</label></td>
 					<td><span class="leftEmptyIfUnknown">*</span></td>
 					<td><input type="text" name="dossard" id="dossardId" value="" size="4"></td>
 				</tr>
 				<tr>
-					<td align="right"><label for="firstNameId">Prénom:</label></td>
+					<td align="right"><label for="firstNameId">PrÃ©nom:</label></td>
 					<td><span class="required">*</span></td>
 					<td><input type="text" name="firstName" id="firstNameId" value=""></td>
 				</tr>
@@ -50,7 +50,7 @@ $patrolId = getParameterGET("patrol_id");
 					<td><input type="text" name="lastName" id="lastNameId" value=""></td>
 				</tr>
 				<tr>
-					<td align="right"><label for="birthYearId">Année de naissance:</label></td>
+					<td align="right"><label for="birthYearId">AnnÃ©e de naissance:</label></td>
 					<td><span class="leftEmptyIfUnknown">*</span></td>
 					<td><input type="text" name="birthYear" id="birthYearId" value="" size="4"></td>
 				</tr>

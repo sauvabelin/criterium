@@ -1,18 +1,18 @@
 <?php
 /*
 	file: 	stopBikerCheck.php
-	author: Benoît Uffer
+	author: BenoÃ®t Uffer
 	
-	L'utilisateuir a entré dans la page précédente le numéro de dossard et l'heure d'arrivée.
-	On les récupère ici et on va les entrer dans la base de donnée.
-	On vérifie que le numero de dossard est différent de "UNKNOWN". ( -1, c'est le numero qu'on met quand on ne connait pas encore
-	Le vrai numéro et qu'on veut déja entrer le biker dans la base de donnée. C'est donc le seul numéro pour lequel un
-	doublon est accepté.
-	Ensuite on va s'assurer que l'heure d'arrivée de l'étape courante n'as pas déja été fixé pour le dossard courant:
-	On vérifie dans la base de donnée. si l'heure vaut "0" c'est qu'elle n'a pas encore été fixée. On passe donc directement au
-	fichier stopBikerDone.php qui va fair les modifs dans la base de donnée
-	Si elle a déja été fixée, on passe par une étape intermédiaire: stopBikerPrompt.php qui notifie l'utilisateur que l'heure à déja été
-	fixée pour ce dossard, et il peut choisir d'annuler ou de continuer.
+	L'utilisateuir a entrÃ© dans la page prÃ©cÃ©dente le numÃ©ro de dossard et l'heure d'arrivÃ©e.
+	On les rÃ©cupÃ¨re ici et on va les entrer dans la base de donnÃ©e.
+	On vÃ©rifie que le numero de dossard est diffÃ©rent de "UNKNOWN". ( -1, c'est le numero qu'on met quand on ne connait pas encore
+	Le vrai numÃ©ro et qu'on veut dÃ©ja entrer le biker dans la base de donnÃ©e. C'est donc le seul numÃ©ro pour lequel un
+	doublon est acceptÃ©.
+	Ensuite on va s'assurer que l'heure d'arrivÃ©e de l'Ã©tape courante n'as pas dÃ©ja Ã©tÃ© fixÃ© pour le dossard courant:
+	On vÃ©rifie dans la base de donnÃ©e. si l'heure vaut "0" c'est qu'elle n'a pas encore Ã©tÃ© fixÃ©e. On passe donc directement au
+	fichier stopBikerDone.php qui va fair les modifs dans la base de donnÃ©e
+	Si elle a dÃ©ja Ã©tÃ© fixÃ©e, on passe par une Ã©tape intermÃ©diaire: stopBikerPrompt.php qui notifie l'utilisateur que l'heure Ã  dÃ©ja Ã©tÃ©
+	fixÃ©e pour ce dossard, et il peut choisir d'annuler ou de continuer.
 */
 
 
@@ -30,15 +30,15 @@ if($dossard == UNKNOWN)
 $timeField = getParameterGET("timeField");
 
 
-// on regarde quelle méthode à été choisie
+// on regarde quelle mÃ©thode Ã  Ã©tÃ© choisie
 if(isset($_POST['method']))
 {
 	$method = $_POST['method'];
 }
 else
 {
-	// normalement, à ce stade il est impossible que $timeField ne soit pas "setté", mais mieux vaut vérifier.
-	exit('erreur: vous n\'avez pas choisi la méthode');
+	// normalement, Ã  ce stade il est impossible que $timeField ne soit pas "settÃ©", mais mieux vaut vÃ©rifier.
+	exit('erreur: vous n\'avez pas choisi la mÃ©thode');
 }
 
 if($method=="system")
@@ -48,7 +48,7 @@ if($method=="system")
 }
 else if($method=="manual")
 {
-	// L'utilisateur a choisi d'entrer une heure manuellement. On lit l'heure qu'il a entré (method POST)
+	// L'utilisateur a choisi d'entrer une heure manuellement. On lit l'heure qu'il a entrÃ© (method POST)
 	$h = $_POST["hh"];
 	$m = $_POST["mm"];
 	$s = $_POST["ss"];
@@ -56,33 +56,33 @@ else if($method=="manual")
 }
 else
 {
-	// normalement c'set impossible que la méthode n'ai pas été définie car ce sont des boutons radio avec une valeur par défaut,
-	// mais vérifions tout de même:
-	exit("erreur: la methode n'as pas été définie");
+	// normalement c'set impossible que la mÃ©thode n'ai pas Ã©tÃ© dÃ©finie car ce sont des boutons radio avec une valeur par dÃ©faut,
+	// mais vÃ©rifions tout de mÃªme:
+	exit("erreur: la methode n'as pas Ã©tÃ© dÃ©finie");
 }
 
 
-// connection à la base de donnée:
+// connection Ã  la base de donnÃ©e:
 connect();
 
 
-// On vérifie que ce numéro de dossard existe bel et bien dans la base de donnée, et qu'il existe une seule fois!
+// On vÃ©rifie que ce numÃ©ro de dossard existe bel et bien dans la base de donnÃ©e, et qu'il existe une seule fois!
 $query = 'select '.$timeField.' from t_biker where dossard="'.$dossard.'"';
 $res = mysql_query($query);
-// on regarde le nombre de ligne de la réponse (= au nombre de fois que ce dossard existe dans la DB)
+// on regarde le nombre de ligne de la rÃ©ponse (= au nombre de fois que ce dossard existe dans la DB)
 $number_of_biker = mysql_num_rows($res);
 if($number_of_biker!=1)
 {
 	// erreur: le nombre de fois que le dossard existe dans la DB n'est pas 1
-	exit('erreur: Il y a '.$number_of_biker.' bikers avec id="'.$dossard.'" dans la base de donnée (alors qu\'il devrait y en avoir 1)');
+	exit('erreur: Il y a '.$number_of_biker.' bikers avec id="'.$dossard.'" dans la base de donnÃ©e (alors qu\'il devrait y en avoir 1)');
 }
 
-// On vérifie que le temps d'arrivée du dossard courant à l'étape courante est -1. (= pas encore initialisé)
+// On vÃ©rifie que le temps d'arrivÃ©e du dossard courant Ã  l'Ã©tape courante est -1. (= pas encore initialisÃ©)
 $row = mysql_fetch_assoc($res);
 $fieldValue = $row[$timeField];
 if($fieldValue != UNKNOWN)
 {
-	// attention: il y a déja un temps d'arrivée pour ce dossard et pour cette etape. Il faut averitir l'utilisateur plutot
+	// attention: il y a dÃ©ja un temps d'arrivÃ©e pour ce dossard et pour cette etape. Il faut averitir l'utilisateur plutot
 	// que de modifier la DB directement:
 	header('Location: stopBikerPrompt.php?timeField='.$timeField.'&dossard='.$dossard.'&arrivalTime='.$arrivalTime.'');
 }

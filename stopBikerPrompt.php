@@ -1,16 +1,16 @@
 <?php
 /*
 	file: 	stopBikerPrompt.php
-	author: Benoît Uffer
+	author: BenoÃ®t Uffer
 	
-	ce fichier est automatiquement appelé (grâce à la fonction header) par le fichier "stopBiker.php" si l'utilisateur entre un dossard
-	qui a déja été stoppé. On laisse à l'utilisateur le choix d'écraser (entrer un nouveau temps pour l'arrivée de ce même dossard) ou 
-	d'annuler (on retourne à la page qui permet d'entrer le numero du dossard sans toucher à la base de donnée
+	ce fichier est automatiquement appelÃ© (grÃ¢ce Ã  la fonction header) par le fichier "stopBiker.php" si l'utilisateur entre un dossard
+	qui a dÃ©ja Ã©tÃ© stoppÃ©. On laisse Ã  l'utilisateur le choix d'Ã©craser (entrer un nouveau temps pour l'arrivÃ©e de ce mÃªme dossard) ou 
+	d'annuler (on retourne Ã  la page qui permet d'entrer le numero du dossard sans toucher Ã  la base de donnÃ©e
 */
 
 include_once("globals.php");
 
-// On récupère le numéro du dossard qu'on est en train de traiter (pour affichage)
+// On rÃ©cupÃ¨re le numÃ©ro du dossard qu'on est en train de traiter (pour affichage)
 $dossard = getParameterGET("dossard");
 $timeField = getParameterGET("timeField");
 $arrivalTime = getParameterGET("arrivalTime");
@@ -25,7 +25,7 @@ $arrivalTime = getParameterGET("arrivalTime");
 	
 	<body>
 		<?php
-		echo '<h2>Attention: le dossard '.$dossard.' est déja arrivé à cette étape. Voulez-vous l\'écraser?</h2>';
+		echo '<h2>Attention: le dossard '.$dossard.' est dÃ©ja arrivÃ© Ã  cette Ã©tape. Voulez-vous l\'Ã©craser?</h2>';
 		echo '<br><br>';
 		echo '<a href="stopBikerDone.php?timeField='.$timeField.'&dossard='.$dossard.'&arrivalTime='.$arrivalTime.'">OUI, ECRASER</a>';
 		echo '<br><br>';

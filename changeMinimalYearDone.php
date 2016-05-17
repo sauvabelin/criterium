@@ -1,9 +1,9 @@
 <?php
 	/*
 		file: 	editBikerDone.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		On arrive à ce script si on veut modifier des données d'un biker. (changer son numero de dossard par exemple)
+		On arrive Ã  ce script si on veut modifier des donnÃ©es d'un biker. (changer son numero de dossard par exemple)
 	*/
 
 include_once("sql.php");
@@ -11,20 +11,20 @@ include_once("globals.php");
 
 
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-//On prend les info entrées par l'utilisateur dans le forumlaire et envoyées par la méthode POST:
+//On prend les info entrÃ©es par l'utilisateur dans le forumlaire et envoyÃ©es par la mÃ©thode POST:
 $minYear = getParameterPOST("minYear");
 
-// SI ET SEULEMENT SI l'année a été entré, alors:
+// SI ET SEULEMENT SI l'annÃ©e a Ã©tÃ© entrÃ©, alors:
 if(trim($minYear)!="")
 {	
-	// 1) on vérifie que c'est un nombre entier:
+	// 1) on vÃ©rifie que c'est un nombre entier:
 	if(!is_a_number($minYear))
 	{
-		exit("erreur: l\'année doit etre un nombre entier");
+		exit("erreur: l\'annÃ©e doit etre un nombre entier");
 	}
 }
 else
@@ -36,6 +36,6 @@ else
 //Modification dans la DB:
 setMinimalYear($minYear);
 
-//4) on redirige automatiquement à la page d'admin 
+//4) on redirige automatiquement Ã  la page d'admin 
 header('Location: admin.php');
 ?>

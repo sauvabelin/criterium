@@ -1,21 +1,21 @@
 <?php
 /*
 	file: 	globals.php
-	author: Benoît Uffer
+	author: BenoÃ®t Uffer
 	
-	définitions de variables et fonctions globales:
+	dÃ©finitions de variables et fonctions globales:
 */
 
 //types:
 define("ECLAIREUR", 	1);
 define("ECLAIREUSE", 	2);
 define("BRANCHE_2",		3); // eclaireurs ET eclaireuses
-define("ROUGE_G",		  5); // rouges garçons
+define("ROUGE_G",		  5); // rouges garÃ§ons
 define("ROUGE_F",		  6); // rouges filles
-define("BRANCHE_3",		7); // rouges garçons ET filles
+define("BRANCHE_3",		7); // rouges garÃ§ons ET filles
 define("CLANG",		    8);
 define("CLANF",		    9);
-define("CLANS",		    10); // clan garçons ET filles
+define("CLANS",		    10); // clan garÃ§ons ET filles
 
 //troupes:
 define("ZANFLEURON",	1);
@@ -49,9 +49,9 @@ define("UNKNOWN", 	-1);
 /*
 	displayFooter()
 	
-	Cette fonction affiche un pied de page. Elle doit etre appellée a chaque page qui souhaite l'afficher.
-	Ce doit être la dernière chose avant de refermer la balise </body>
-	Le but est d'avoir un pied de page uniforme dans tous le site, et n'écrire les changements qu'une seule fois
+	Cette fonction affiche un pied de page. Elle doit etre appellÃ©e a chaque page qui souhaite l'afficher.
+	Ce doit Ãªtre la derniÃ¨re chose avant de refermer la balise </body>
+	Le but est d'avoir un pied de page uniforme dans tous le site, et n'Ã©crire les changements qu'une seule fois
 */
 function displayFooter()
 {
@@ -68,7 +68,7 @@ function displayFooter()
 /*
 	is_a_number($x)
 
-	cette fonction est une façon "propre" de savoir si une variable correspond à un nombre entier ou non
+	cette fonction est une faÃ§on "propre" de savoir si une variable correspond Ã  un nombre entier ou non
 	(is_int() ne focntionne pas)
 	
 	retourne true si $x est un entier
@@ -83,10 +83,10 @@ function is_a_number($x)
 /*
 	formatCase($str)
 	
-	cette fonction retourne la chaîne passée en paramètre, avec la première lettre en majuscule et toutes
+	cette fonction retourne la chaÃ®ne passÃ©e en paramÃ¨tre, avec la premiÃ¨re lettre en majuscule et toutes
 	les autres en minuscule
 	
-	But: avoir dans la base de donnée un format etablit. (pour les noms des patrouilles par exemple)
+	But: avoir dans la base de donnÃ©e un format etablit. (pour les noms des patrouilles par exemple)
 */
 function formatCase($str)
 {
@@ -96,30 +96,30 @@ function formatCase($str)
 /*
 	getTroopName($bsNum)
 	
-	retourne une chaîne de caractère qui contient le nom de la troupe en fonction du numero BS.
+	retourne une chaÃ®ne de caractÃ¨re qui contient le nom de la troupe en fonction du numero BS.
 	cette fonction stop le script si:
-	- elle n'arrive pas à se connecter à la base de donnée
-	- elle ne trouve dans la DB aucune troupe avec le numero bs passé en paramètre
-	- elle trouve dans la DB plusieurs troupes  avec le numero bs passé en paramètre
+	- elle n'arrive pas Ã  se connecter Ã  la base de donnÃ©e
+	- elle ne trouve dans la DB aucune troupe avec le numero bs passÃ© en paramÃ¨tre
+	- elle trouve dans la DB plusieurs troupes  avec le numero bs passÃ© en paramÃ¨tre
 
 */
 function getTroopName($bsNum)
 {
-	// connect à la base de donnée
+	// connect Ã  la base de donnÃ©e
 connect();
 
-	// on récupère le nom de la troupe:
+	// on rÃ©cupÃ¨re le nom de la troupe:
 	$query = 'select name from t_troop where bsNum="'.$bsNum.'"';
 	$res = mysql_query($query);
-	// on vérifie (a tout hasard) qu'il y a 1 et 1 seule troupe avec ce bsNum:
+	// on vÃ©rifie (a tout hasard) qu'il y a 1 et 1 seule troupe avec ce bsNum:
 	$number_of_troop = mysql_num_rows($res);
 	if($number_of_troop==0)
 	{
-		exit('erreur: il n\'y a pas de troupe avec bsNum = '.$bsNum.' dans la base de données');
+		exit('erreur: il n\'y a pas de troupe avec bsNum = '.$bsNum.' dans la base de donnÃ©es');
 	}
 	else if($number_of_troop > 1)
 	{
-		exit('erreur: il y a plusieures troupes avec bsNum = '.$bsNum.' dans la base de données');
+		exit('erreur: il y a plusieures troupes avec bsNum = '.$bsNum.' dans la base de donnÃ©es');
 	}
 	$row = mysql_fetch_assoc($res);
 	return $row["name"];
@@ -128,30 +128,30 @@ connect();
 	/*
 	getTroopName($bsNum)
 	
-	retourne une chaîne de caractère qui contient le nom de la patrouille en fonction de son id dans la DB.
+	retourne une chaÃ®ne de caractÃ¨re qui contient le nom de la patrouille en fonction de son id dans la DB.
 	cette fonction stop le script si:
-	- elle n'arrive pas à se connecter à la base de donnée
-	- elle ne trouve dans la DB aucune troupe avec le numero bs passé en paramètre
-	- elle trouve dans la DB plusieurs troupes  avec le numero bs passé en paramètre
+	- elle n'arrive pas Ã  se connecter Ã  la base de donnÃ©e
+	- elle ne trouve dans la DB aucune troupe avec le numero bs passÃ© en paramÃ¨tre
+	- elle trouve dans la DB plusieurs troupes  avec le numero bs passÃ© en paramÃ¨tre
 
 */
 function getPatrolName($patrol_id)
 {
-	// connect à la base de donnée
+	// connect Ã  la base de donnÃ©e
 connect();
 
-	// on récupère le nom de la patrouille:
+	// on rÃ©cupÃ¨re le nom de la patrouille:
 	$query = 'select name from t_patrol where id="'.$patrol_id.'"';
 	$res = mysql_query($query);
-	// on vérifie (a tout hasard) qu'il y a 1 et 1 seule patrouille avec ce patrol_id:
+	// on vÃ©rifie (a tout hasard) qu'il y a 1 et 1 seule patrouille avec ce patrol_id:
 	$number_of_patrol = mysql_num_rows($res);
 	if($number_of_patrol==0)
 	{
-		exit('erreur: il n\'y a pas de patrouille avec l\'id = '.$patrol_id.' dans la base de données');
+		exit('erreur: il n\'y a pas de patrouille avec l\'id = '.$patrol_id.' dans la base de donnÃ©es');
 	}
 	else if($number_of_patrol > 1)
 	{
-		exit('erreur: il y a plusieures patrouilles avec l\'id = '.$patrol_id.' dans la base de données');
+		exit('erreur: il y a plusieures patrouilles avec l\'id = '.$patrol_id.' dans la base de donnÃ©es');
 	}
 	$row = mysql_fetch_assoc($res);
 	return $row["name"];
@@ -160,14 +160,14 @@ connect();
 	/*
 	 getParameterGET($param)
 	 
-	 verifie si le paramètre demandé existe avant de le récupérer.
+	 verifie si le paramÃ¨tre demandÃ© existe avant de le rÃ©cupÃ©rer.
 	 s'il n'existe pas, le script se termine avec un msg d'erreur
   */
 	function getParameterGET($param)
 	{
   	if(!isset($_GET[$param]))
   	{
-  	 exit('erreur: le paramètre "'.$param.'" manque (méthode GET)');
+  	 exit('erreur: le paramÃ¨tre "'.$param.'" manque (mÃ©thode GET)');
     }
     return $_GET[$param];
   }
@@ -175,14 +175,14 @@ connect();
   	/*
 	 getParameterPOST($param)
 	 
-	 verifie si le paramètre demandé existe avant de le récupérer.
+	 verifie si le paramÃ¨tre demandÃ© existe avant de le rÃ©cupÃ©rer.
 	 s'il n'existe pas, le script se termine avec un msg d'erreur
   */
 	function getParameterPOST($param)
 	{
   	if(!isset($_POST[$param]))
   	{
-  	 exit('erreur: le paramètre "'.$param.'" manque (méthode POST)');
+  	 exit('erreur: le paramÃ¨tre "'.$param.'" manque (mÃ©thode POST)');
     }
     return $_POST[$param];
   }
@@ -191,7 +191,7 @@ connect();
 	/*
 	  getMinimalYear()
 	
-		retourne l'année qui se trouve dans la table t_year
+		retourne l'annÃ©e qui se trouve dans la table t_year
 		(c'est une table avec 1 seul colonne et 1 seule ligne)
 	*/
 	function getMinimalYear()
@@ -307,7 +307,7 @@ connect();
 	/*
 		br($n)
 		
-		fait $n echos de <br> à la suite
+		fait $n echos de <br> Ã  la suite
 	*/
 	function br($n)
 	{
@@ -320,7 +320,7 @@ connect();
 	/*
 		compareMoyennes($a,$b)
 		
-		cette fonction compare les colonnes "moyenne" des tableaux passée en paramètres,
+		cette fonction compare les colonnes "moyenne" des tableaux passÃ©e en paramÃ¨tres,
 		pour le tri de tableau multi-dimmensionnel
 	*/
 	function compareMoyennes($a,$b)

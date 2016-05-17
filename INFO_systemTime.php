@@ -1,15 +1,15 @@
 <?php
 	/*
 		file: 	INFO_systemTime.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		Ce fichier permet à l'utilisateur de connaitre le temps systeme actuel, ou le temps system correspondant à une heure
-		précise (entrée à la main) si besoin est.
+		Ce fichier permet Ã  l'utilisateur de connaitre le temps systeme actuel, ou le temps system correspondant Ã  une heure
+		prÃ©cise (entrÃ©e Ã  la main) si besoin est.
 	*/
 
 include_once("globals.php");
 
-//vérifier si il faut convertir un tps System en Heure
+//vÃ©rifier si il faut convertir un tps System en Heure
 if(isset($_GET["tps"]))
 {
 	$convertS2H = TRUE;
@@ -22,7 +22,7 @@ else
 	$convertS2H = FALSE;
 }
 
-//vérifier si il faut convertir une heure en tps System
+//vÃ©rifier si il faut convertir une heure en tps System
 if(isset($_GET["hh"]))
 {
 	$convertH2S = TRUE;
@@ -37,9 +37,9 @@ else
 	$convertH2S = FALSE;
 }
 
-// on prend l'heure système
+// on prend l'heure systÃ¨me
 $systemTime = time();
-// on la convertit à un format "human-readable"
+// on la convertit Ã  un format "human-readable"
 $systemTimeHuman = date("H \h i \m s \s",$systemTime);
 
 
@@ -87,7 +87,7 @@ $systemTimeHuman = date("H \h i \m s \s",$systemTime);
 		?>
 		
 		<!--
-		Voici le formulaire qui permet à l'utilisateur d'entrer une heure manuellement pour la convertir en tps UNIX:
+		Voici le formulaire qui permet Ã  l'utilisateur d'entrer une heure manuellement pour la convertir en tps UNIX:
 		-->
 		<br><br><br>
 		<form action="INFO_systemTime.php" method="GET">
@@ -98,7 +98,7 @@ $systemTimeHuman = date("H \h i \m s \s",$systemTime);
 		</form>
 		
 		<!--
-		Voici le formulaire qui permet à l'utilisateur d'entrer un temps UNIX manuellement pour le convertir en heure:
+		Voici le formulaire qui permet Ã  l'utilisateur d'entrer un temps UNIX manuellement pour le convertir en heure:
 		-->
 		<br><br><br>
 		<form action="INFO_systemTime.php" method="GET">

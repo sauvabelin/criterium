@@ -1,24 +1,24 @@
 <?php
 	/*
 		file: 	displayTroop.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 	
 include_once("globals.php");
 include_once("sql.php");
 
 
-// récupérer le bsNum de la troupe à afficher:
+// rÃ©cupÃ©rer le bsNum de la troupe Ã  afficher:
 $bsNum = getParameterGET("bsNum");
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-// on récupère le nom de la troupe:
+// on rÃ©cupÃ¨re le nom de la troupe:
 $troopName = getTroopName($bsNum);
 
-// on récupère les patrol_id de la troupe:
+// on rÃ©cupÃ¨re les patrol_id de la troupe:
 $query = 'select name,id from t_patrol where troop_id="'.$bsNum.'"';
 $res = mysql_query($query);
 $num_of_patrol = mysql_num_rows($res);
@@ -28,7 +28,7 @@ for($i=0;$i<$num_of_patrol;$i++)
   $patrol[$i]["name"]=$row["name"];
   $patrol[$i]["id"]=$row["id"];
   
-  // pour chaque patrol_id, on récupère les noms, prénoms et dossard des bikers:
+  // pour chaque patrol_id, on rÃ©cupÃ¨re les noms, prÃ©noms et dossard des bikers:
   $query = 'select firstName,lastName,dossard,birthYear from t_biker where patrol_id = "'.$patrol[$i]["id"].'"';
   $inres = mysql_query($query);
   $num_of_bikers[$i] = mysql_num_rows($inres);

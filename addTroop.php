@@ -1,9 +1,9 @@
 <?php
 	/*
 		file: 	addTroop.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		Ici on affiche un formulaire qui permet à l'utilisateur d'ajouter une troupe
+		Ici on affiche un formulaire qui permet Ã  l'utilisateur d'ajouter une troupe
 	*/
 
 include_once("globals.php");
@@ -27,7 +27,7 @@ include_once("sql.php");
 		echo '<td><input type="text" name="troopName" id="troopNameId" value=""></td>';
 		echo '</tr>';
 		echo '<tr>';
-		echo '<td align="right"><label for="bsNumId">Numéro BS: </label></td>';
+		echo '<td align="right"><label for="bsNumId">NumÃ©ro BS: </label></td>';
 		echo '<td><input type="text" name="bsNum" id="bsNumId" value="" size="2"></td>';
 		echo '</tr>';
 		echo '</table>';
@@ -40,7 +40,7 @@ include_once("sql.php");
 		echo '<label for="eclaireuseId">Eclaireuse</label>';
 		echo '<br>';
 		echo '<input type="radio" name="type" value="'.ROUGE_G.'" id="rougegId" value="" size="2">';
-		echo '<label for="rougegId">Rouge (garçons)</label>';
+		echo '<label for="rougegId">Rouge (garÃ§ons)</label>';
 		echo '<br>';
 		echo '<input type="radio" name="type" value="'.ROUGE_F.'" id="rougefId" value="" size="2">';
 		echo '<label for="rougefId">Rouge (filles)</label>';

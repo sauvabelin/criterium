@@ -1,39 +1,39 @@
 <?php
 	/*
 		file: 	deleteBikerConfirmed.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		Si on arrive à ce fichier, ça veut dire que l'utilisateur a confirmé qu'on pouvait détruire le biker concerné
-		(on le distingue grâce à son "id"
+		Si on arrive Ã  ce fichier, Ã§a veut dire que l'utilisateur a confirmÃ© qu'on pouvait dÃ©truire le biker concernÃ©
+		(on le distingue grÃ¢ce Ã  son "id"
 	*/
 include_once("globals.php");
 include_once("sql.php");
 
 
 
-// On récupère l'id du biker à détruire:
+// On rÃ©cupÃ¨re l'id du biker Ã  dÃ©truire:
 $id = getParameterGET("id");
 
-// connection à la DB:
+// connection Ã  la DB:
 connect();
 
 
-// il faut récupérer la patrol_id à laquelle le biker appartient de sorte à pouvoir rediriger directement
+// il faut rÃ©cupÃ©rer la patrol_id Ã  laquelle le biker appartient de sorte Ã  pouvoir rediriger directement
 // vers la bonne patrouille
 $query = 'select patrol_id from t_biker where id="'.$id.'"';
 $res = mysql_query($query);
 $row = mysql_fetch_assoc($res);
 $patrolId = $row["patrol_id"];
 
-// on détruit le biker:
+// on dÃ©truit le biker:
 $query = 'delete from t_biker where id="'.$id.'"';
 if(!mysql_query($query))
 {
-	exit("la destruction a échoué");
+	exit("la destruction a Ã©chouÃ©");
 }
 
-// on redirige automatiquement vers la page d'édition de la patrouille
-// il se peut qu'un paramètre de plus, src, soit présent.
+// on redirige automatiquement vers la page d'Ã©dition de la patrouille
+// il se peut qu'un paramÃ¨tre de plus, src, soit prÃ©sent.
 // c'est si on arrive ici en ayant fait admin->tests->supprimer plutot que admin->edit troupe->edite patrouille->supprimer.
 if(isset($_GET["src"]))
 {

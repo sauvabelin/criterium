@@ -1,32 +1,32 @@
 <?php
 /*
 	file:		stopBikerDone.php
-	author: Benoît Uffer
+	author: BenoÃ®t Uffer
 	
-	Si on arrive ici, c'est qu'on peut modifier la DB (soit il n'y a pas encore de temps d'arrivée pour CE dossard pour CETTE etape,
-	soit l'utilisateur a confirmé qu'on peut écraser la valeur
+	Si on arrive ici, c'est qu'on peut modifier la DB (soit il n'y a pas encore de temps d'arrivÃ©e pour CE dossard pour CETTE etape,
+	soit l'utilisateur a confirmÃ© qu'on peut Ã©craser la valeur
 */
 
 include_once("sql.php");
 include_once("globals.php");
 
-// On récupère les variables GET (timeField, dossard, arrivalTime
+// On rÃ©cupÃ¨re les variables GET (timeField, dossard, arrivalTime
 $dossard = getParameterGET("dossard");
 $arrivalTime = getParameterGET("arrivalTime");
 $timeField = getParameterGET("timeField");
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-// On modifie la base de donnée pour y mettre l'heure d'arrivée
+// On modifie la base de donnÃ©e pour y mettre l'heure d'arrivÃ©e
 $query = 'update t_biker set '.$timeField.'="'.$arrivalTime.'"  where dossard="'.$dossard.'"';
 if(!mysql_query($query))
 {
 	exit('request failed: '.$query);
 }
 
-// On compte le nombre de dossards qui ne sont pas encore arrivés à cette étape:
+// On compte le nombre de dossards qui ne sont pas encore arrivÃ©s Ã  cette Ã©tape:
 $query = 'select count(*) from t_biker where '.$timeField.'="-1"';
 $res = mysql_query($query);
 $row = mysql_fetch_row($res);
@@ -46,15 +46,15 @@ $notArrived = $row[0];
 		
 	<?php	
 
-	//on écrit l'heure dans un format "Human-readable", et on notifie l'utilisateur de l'heure qu'on a ajouté dans la DB:
+	//on Ã©crit l'heure dans un format "Human-readable", et on notifie l'utilisateur de l'heure qu'on a ajoutÃ© dans la DB:
 	$arrivalTimeHuman = date("H:i:s",$arrivalTime);
-	echo 'le biker avec le dossard '.$dossard.' est arrivé a: <h3>'.$arrivalTimeHuman,'</h3>';
+	echo 'le biker avec le dossard '.$dossard.' est arrivÃ© a: <h3>'.$arrivalTimeHuman,'</h3>';
 	
 	
 	
 /*
-		ce formulaire redirige simplement vers la page qui permet d'entrer le dossard suivant pour une arrivée à la même étape
-		(Il n'y a aucune valeur envoyée)
+		ce formulaire redirige simplement vers la page qui permet d'entrer le dossard suivant pour une arrivÃ©e Ã  la mÃªme Ã©tape
+		(Il n'y a aucune valeur envoyÃ©e)
 */
 	echo '<form action="stopBiker.php" method="GET">';
 	echo '<input type="hidden" name="timeField" value="'.$timeField.'">';
@@ -64,11 +64,11 @@ $notArrived = $row[0];
 	
 		if($notArrived == 0)
 		{
-			echo 'tous les bikers sont arrivés à cette étape';
+			echo 'tous les bikers sont arrivÃ©s Ã  cette Ã©tape';
 		}
 		else
 		{
-			echo 'il reste encore '.$notArrived.' biker(s) qui ne sont pas arrivés à cette étape';
+			echo 'il reste encore '.$notArrived.' biker(s) qui ne sont pas arrivÃ©s Ã  cette Ã©tape';
 		}
 	
 		// affichage du pied de page

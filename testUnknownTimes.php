@@ -1,14 +1,14 @@
 <?php
 	/*
 		file: 	testUnknownTimes.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("globals.php");
 include_once("sql.php");
 
 
-// connection à la base de données:
+// connection Ã  la base de donnÃ©es:
 connect();
 
 
@@ -41,7 +41,7 @@ for($i=0;$i<$number_of_bikers;$i++)
 	if($number_of_bikers == 0)
 	{
 		echo '<br><br>';
-		echo '<span class="prompt">C\'est bon! il n\'y a aucun gars/filles dans la base de donnée avec des temps inconnus</span>';
+		echo '<span class="prompt">C\'est bon! il n\'y a aucun gars/filles dans la base de donnÃ©e avec des temps inconnus</span>';
 		echo '<br><br>';
 	}
 	else
@@ -51,7 +51,7 @@ for($i=0;$i<$number_of_bikers;$i++)
 		br(2);
 		echo '<table border ="1">';
 		echo '<tr>';
-		echo '<td>Nom</td><td>Prénom</td><td>Troupe</td><td>Patrouille</td><td></td><td></td>';
+		echo '<td>Nom</td><td>PrÃ©nom</td><td>Troupe</td><td>Patrouille</td><td></td><td></td>';
 		echo '</tr>';
 		
 	
@@ -62,7 +62,7 @@ for($i=0;$i<$number_of_bikers;$i++)
 			echo '<td>'.$biker[$i]["firstName"].'</td>';
 			echo '<td>'.$biker[$i]["troopName"].'</td>';
 			echo '<td>'.$biker[$i]["patrolName"].'</td>';
-			// sur les liens, on ajoute un paramètre GET "src" pour qu'apres la modif (ou la suppression), on se redirige automatiquement à cette page
+			// sur les liens, on ajoute un paramÃ¨tre GET "src" pour qu'apres la modif (ou la suppression), on se redirige automatiquement Ã  cette page
 			echo '<td><a href="editTimes.php?biker_id='.$biker[$i]["id"].'&src=testUnknownTimes">Modifier temps</a></td>';
 			echo '<td><a href="deleteBiker.php?id='.$biker[$i]["id"].'&src=testUnknownTimes">Supprimer</a></td>';
 			echo '</tr>';

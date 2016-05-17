@@ -1,7 +1,7 @@
 <?php
 	/*
 		file: 	WARNING_dropAllTables.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 	*/
 
 include_once("sql.php");

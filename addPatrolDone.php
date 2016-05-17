@@ -1,49 +1,49 @@
 <?php
 	/*
 		file: 	addPatrolDone.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		On arrive a ce script apres avoir "crée" une nouvelle patrouille dans le fichier "addPatrol.php"
-		On vérifie que le champ n'est pas vide, et que la patrouille n'existe pas déja, ensuite c'est bon:
+		On arrive a ce script apres avoir "crÃ©e" une nouvelle patrouille dans le fichier "addPatrol.php"
+		On vÃ©rifie que le champ n'est pas vide, et que la patrouille n'existe pas dÃ©ja, ensuite c'est bon:
 		On modifie la DB
 	*/
 
 include_once("sql.php");
 include_once("globals.php");
 
-// recuperation des paramètres GET:
+// recuperation des paramÃ¨tres GET:
 $patrolName = getParameterGET("patrolName");
 $bsNum = getParameterGET("bsNum");
 
-// on vérifie que le nom de la patrouille a été rempli:
+// on vÃ©rifie que le nom de la patrouille a Ã©tÃ© rempli:
 if(trim($patrolName)=="")
 {
-	exit("Erreur: le nom de la patrouille ne peut pas être vide");
+	exit("Erreur: le nom de la patrouille ne peut pas Ãªtre vide");
 }
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-// On vérifie que cette patrouille n'existe pas déja dans la base de donnée:
-// PROBLEMES: cette vérification est case-sensitive:
+// On vÃ©rifie que cette patrouille n'existe pas dÃ©ja dans la base de donnÃ©e:
+// PROBLEMES: cette vÃ©rification est case-sensitive:
 // donc si on veut ajouter "aigles" et que dans la base il y a "Aigles", alors
-// ça va marcher. Pour y remedier, on utilise la fonction formatCase() qui retourne
-// une chaîne dont la premiere lettre uniquement est en majuscule. On fait de même quand on
-// ajoute une chaîne dans la base, donc on utilise QUE des chaînes qui ont ce format.
-// un autre problème est le pluriel: "Aigle" est différent de "Aigles"
-// pour y remedier, on ne peut que demander à l'utilisateur d'écrire le nom de la patrouille
-// au pluriel à chaque fois et espérer qu'il le fait.
-// le dernier problème est les accents. Je ne suis pas sur de la façon dont ils sont gérés
-// (est-ce que l'encodage dans le navigateur est le même que dans la base? quel impact ça a?
-// c'est un domaine dans lequel je ne suis pas à l'aise)
+// Ã§a va marcher. Pour y remedier, on utilise la fonction formatCase() qui retourne
+// une chaÃ®ne dont la premiere lettre uniquement est en majuscule. On fait de mÃªme quand on
+// ajoute une chaÃ®ne dans la base, donc on utilise QUE des chaÃ®nes qui ont ce format.
+// un autre problÃ¨me est le pluriel: "Aigle" est diffÃ©rent de "Aigles"
+// pour y remedier, on ne peut que demander Ã  l'utilisateur d'Ã©crire le nom de la patrouille
+// au pluriel Ã  chaque fois et espÃ©rer qu'il le fait.
+// le dernier problÃ¨me est les accents. Je ne suis pas sur de la faÃ§on dont ils sont gÃ©rÃ©s
+// (est-ce que l'encodage dans le navigateur est le mÃªme que dans la base? quel impact Ã§a a?
+// c'est un domaine dans lequel je ne suis pas Ã  l'aise)
 $query = 'select * from t_patrol where name="'.formatCase($patrolName).'"';
 $res = mysql_query($query);
-// on regarde combien de record existent déja dans la DB (ça devrait être 0):
+// on regarde combien de record existent dÃ©ja dans la DB (Ã§a devrait Ãªtre 0):
 $number_of_patrol = mysql_num_rows($res);
 if($number_of_patrol >= 1)
 {
-	exit('erreur: il y a déja une patrouille avec le même nom dans la base de données.');
+	exit('erreur: il y a dÃ©ja une patrouille avec le mÃªme nom dans la base de donnÃ©es.');
 }
 
 
@@ -54,7 +54,7 @@ if(!mysql_query($query))
 	exit('erreur lors de la requete SQL');
 }
 
-//4) on redirige automatiquement à la page d'édition de la patrouille courante (ce qui affichera le nouveau gars et qui 
+//4) on redirige automatiquement Ã  la page d'Ã©dition de la patrouille courante (ce qui affichera le nouveau gars et qui 
 //		permettra d'en ajouter encore d'autres):
 header('Location: editTroop.php?bsNum='.$bsNum);
 ?>

@@ -1,39 +1,39 @@
 <?php
 	/*
 		file: 	deletePatrolConfirmed.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		Si on arrive à ce fichier, ça veut dire que l'utilisateur a confirmé qu'on pouvait détruire la patrouille concernée
-		(on la distingue grâce à son "id")
+		Si on arrive Ã  ce fichier, Ã§a veut dire que l'utilisateur a confirmÃ© qu'on pouvait dÃ©truire la patrouille concernÃ©e
+		(on la distingue grÃ¢ce Ã  son "id")
 	*/
 include_once("globals.php");
 include_once("sql.php");
 
 
-// on récupère les variables GET dans des variables locales pour ce script
+// on rÃ©cupÃ¨re les variables GET dans des variables locales pour ce script
 $patrolId = getParameterGET("id");
-$bsNum = getParameterGET("bsNum"); // on garde le bsNum pour retourner automatiquement à la page de la bonne troupe apres destruction
+$bsNum = getParameterGET("bsNum"); // on garde le bsNum pour retourner automatiquement Ã  la page de la bonne troupe apres destruction
 
 
-// connection à la DB:
+// connection Ã  la DB:
 connect();
 
 
-// on détruit la patrouille:
+// on dÃ©truit la patrouille:
 $query = 'delete from t_patrol where id="'.$patrolId.'"';
 if(!mysql_query($query))
 {
-	exit("la destruction a échoué");
+	exit("la destruction a Ã©chouÃ©");
 }
 
 // on detruit tous les gars/filles de cette patrouille:
 $query = 'delete from t_biker where patrol_id="'.$patrolId.'"';
 if(!mysql_query($query))
 {
-	exit("la destruction a échoué");
+	exit("la destruction a Ã©chouÃ©");
 }
 
-// on redirige automatiquement vers la page d'édition de la patrouille
+// on redirige automatiquement vers la page d'Ã©dition de la patrouille
 header('Location: editTroop.php?bsNum='.$bsNum);
 
 ?>

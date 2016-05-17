@@ -1,24 +1,24 @@
 <?php
 	/*
 		file: 	editBiker.php
-		author: Benoît Uffer
+		author: BenoÃ®t Uffer
 		
-		On demande à l'utilisateur de modifier les paramètres d'un Biker.
-		(ça peut être le nom, le prénom ou le numéro de dossard)
+		On demande Ã  l'utilisateur de modifier les paramÃ¨tres d'un Biker.
+		(Ã§a peut Ãªtre le nom, le prÃ©nom ou le numÃ©ro de dossard)
 	*/
 
 include_once("globals.php");
 include_once("sql.php");      
 
 
-// on récupère l'id de ce Biker (passé en paramètre GET)
+// on rÃ©cupÃ¨re l'id de ce Biker (passÃ© en paramÃ¨tre GET)
 $bikerId = getParameterGET("id");
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-// on récupère les données de ce biker:
+// on rÃ©cupÃ¨re les donnÃ©es de ce biker:
 $query = 'select * from t_biker where id="'.$bikerId.'"';
 $res = mysql_query($query);
 $row = mysql_fetch_assoc($res);
@@ -27,7 +27,7 @@ $biker["dossard"] = $row["dossard"];
 $biker["birthYear"] = $row["birthYear"];
 if($biker["birthYear"]==UNKNOWN)
 {
-	// on affiche pas le "-1" si l'année est inconnu, pour ne pas induire en erreur l'utilisateur
+	// on affiche pas le "-1" si l'annÃ©e est inconnu, pour ne pas induire en erreur l'utilisateur
 	$biker["birthYear"] = "";
 }
 if($biker["dossard"]==UNKNOWN)
@@ -52,13 +52,13 @@ $biker["patrol_id"] = $row["patrol_id"];
 		<?php
 		
 		
-		// on affiche un formulaire avec les champs déja remplis avec les champs actuels		
+		// on affiche un formulaire avec les champs dÃ©ja remplis avec les champs actuels		
 		echo '<form action="editBikerDone.php" method="post">';
 		echo '<input type="hidden" name="patrolId" value="'.$biker["patrol_id"].'">';
 		echo '<input type="hidden" name="bikerId" value="'.$bikerId.'">';
 		if(isset($_GET["src"]))
 		{
-			// il se peut qu'un paramètre de plus, src, soit présent.
+			// il se peut qu'un paramÃ¨tre de plus, src, soit prÃ©sent.
 			// c'est si on arrive ici en ayant fait admin->tests plutot que admin->edit troupe->edite patrouille->edit biker.
 			// dans ce cas, on le passe pour que la redirection automatique se fasse au bon endroit:
 			$src = $_GET["src"];
@@ -68,12 +68,12 @@ $biker["patrol_id"] = $row["patrol_id"];
 		
 		echo '<table>';
 		echo '<tr>';
-		echo '	<td align="right"><label for="dossardId">Numéro Dossard:</label></td>';
+		echo '	<td align="right"><label for="dossardId">NumÃ©ro Dossard:</label></td>';
 		echo '	<td><span class="leftEmptyIfUnknown">*</span></td>';
 		echo '	<td><input type="text" name="dossard" id="dossardId" value="'.$biker["dossard"].'" size="4"></td>';
 		echo '</tr>';
 		echo '<tr>';
-		echo '	<td align="right"><label for="firstNameId">Prénom:</label></td>';
+		echo '	<td align="right"><label for="firstNameId">PrÃ©nom:</label></td>';
 		echo '	<td><span class="required">*</span></td>';
 		echo '	<td><input type="text" name="firstName" id="firstNameId" value="'.$biker["firstName"].'"></td>';
 		echo '</tr>';
@@ -83,7 +83,7 @@ $biker["patrol_id"] = $row["patrol_id"];
 		echo '	<td><input type="text" name="lastName" id="lastNameId" value="'.$biker["lastName"].'"></td>';
 		echo '</tr>';
 		echo '<tr>';
-		echo '	<td align="right"><label for="birthYearId">Année de Naissance:</label></td>';
+		echo '	<td align="right"><label for="birthYearId">AnnÃ©e de Naissance:</label></td>';
 		echo '	<td><span class="leftEmptyIfUnknown">*</span></td>';
 		echo '	<td><input type="text" name="birthYear" id="birthYearId" value="'.$biker["birthYear"].'"></td>';
 		echo '</tr>';
@@ -91,17 +91,17 @@ $biker["patrol_id"] = $row["patrol_id"];
 
 				
 /*		
-		echo '<label for="dossardId">Numéro Dossard:</label>';
+		echo '<label for="dossardId">NumÃ©ro Dossard:</label>';
 		echo '<input type="text" name="dossard" id="dossardId" value="'.$biker["dossard"].'" size="4">';
 		echo ' (si le numero n\'est pas encore connu, laissez ce champ vide)';
 		echo '<br>';
-		echo '<label for="firstNameId">Prénom:</label>';
+		echo '<label for="firstNameId">PrÃ©nom:</label>';
 		echo '<input type="text" name="firstName" id="firstNameId" value="'.$biker["firstName"].'">';
 		echo '<br>';
 		echo '<label for="lastNameId">Nom:</label>';
 		echo '<input type="text" name="lastName" id="lastNameId" value="'.$biker["lastName"].'">';
 		echo '<br>';
-		echo '<label for="birthYearId">Année de Naissance:</label>';
+		echo '<label for="birthYearId">AnnÃ©e de Naissance:</label>';
 		echo '<input type="text" name="birthYear" id="birthYearId" value="'.$biker["birthYear"].'">';
 		echo '<br>';
 */

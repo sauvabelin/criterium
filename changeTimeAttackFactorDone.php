@@ -8,17 +8,17 @@ include_once("globals.php");
 include_once("sql.php");
 
 
-// connection à la base de donnée
+// connection Ã  la base de donnÃ©e
 connect();
 
 
-//On prend les info entrées par l'utilisateur dans le forumlaire et envoyées par la méthode POST:
+//On prend les info entrÃ©es par l'utilisateur dans le forumlaire et envoyÃ©es par la mÃ©thode POST:
 $timeAttackFactor = getParameterPOST("timeAttackFactor");
 
-// verification des paramètres entrés:
+// verification des paramÃ¨tres entrÃ©s:
 if(trim($timeAttackFactor)!="")
 {	
-	// 1) on vérifie que c'est un nombre entier:
+	// 1) on vÃ©rifie que c'est un nombre entier:
 	if(!is_a_number($timeAttackFactor))
 	{
 		exit("erreur: le facteur de multiplication doit etre un nombre entier");
@@ -32,6 +32,6 @@ else
 //Modification dans la DB:
 setTimeAttackFactor($timeAttackFactor);
 
-//4) on redirige automatiquement à la page d'admin 
+//4) on redirige automatiquement Ã  la page d'admin 
 header('Location: admin.php');
 ?>
